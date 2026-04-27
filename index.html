@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Trans Logistics</title>
+  <style>
+    /* ========== NAVBAR CSS - COMPLETE STANDALONE ========== */
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Color Variables */
+    :root {
+      --pure-black: #000000;
+      --deep-black: #0A0A0A;
+      --metallic-silver: #E8ECEF;
+      --chrome-light: #D1D5DB;
+      --electric-blue: #00D4FF;
+      --electric-blue-glow: rgba(0, 212, 255, 0.5);
+      --blue-neon: #0099FF;
+      --border-glow: rgba(0, 212, 255, 0.3);
+      --transition: all 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: var(--pure-black); 
+      color: var(--metallic-silver);
+      overflow-x: hidden;
+    }
+
+    /* Navbar Container */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 20px 0;
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ========== LOGO AREA ========== */
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Logo Image Styling */
+    .monogram-container img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+      filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
+      transition: var(--transition);
+    }
+
+    .monogram-container img:hover {
+      filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+    }
+
+    /* Fallback text styling if image fails to load */
+    .monogram-container .logo-fallback {
+      display: none;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      background: linear-gradient(145deg, #D4D8DC 0%, #F0F4F8 25%, #A8ACB0 50%, #D0D4D8 75%, #B8BCBF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Vertical Divider */
+    .vertical-divider {
+      width: 2px;
+      height: 55px;
+      background: var(--electric-blue);
+      box-shadow: 0 0 8px var(--electric-blue);
+      margin: 0 8px;
+    }
+
+    /* Brand Text */
+    .brand-text-side {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .universal-trans {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #E8ECEF 0%, #C0C4C8 50%, #F5F8FC 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+
+    .logistics-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .thin-blue-line {
+      width: 35px;
+      height: 1.5px;
+      background: var(--electric-blue);
+      box-shadow: 0 0 4px var(--electric-blue);
+    }
+
+    .logistics-llc {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--electric-blue);
+      text-transform: uppercase;
+    }
+
+    /* ========== NAVIGATION LINKS ========== */
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-weight: 500;
+      color: var(--metallic-silver);
+      transition: var(--transition);
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a:hover {
+      color: var(--electric-blue);
+      text-shadow: 0 0 5px var(--electric-blue-glow);
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      letter-spacing: 0.5px;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00D4FF, #0099FF);
+      color: #000000;
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    }
+
+    .btn-large {
+      padding: 14px 36px;
+      font-size: 1.1rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #00D4FF;
+      color: #00D4FF;
+      padding: 14px 36px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ========== MOBILE MENU ========== */
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      color: var(--electric-blue);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mobile-menu:hover {
+      text-shadow: 0 0 10px var(--electric-blue);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 968px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .monogram-container img {
+        height: 38px;
+        max-width: 130px;
+      }
+      .vertical-divider {
+        height: 40px;
+      }
+      .universal-trans {
+        font-size: 1.1rem;
+      }
+      .nav-container {
+        padding: 0 20px;
+      }
+      .logistics-llc {
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+      }
+      .thin-blue-line {
+        width: 20px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper {
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .universal-trans {
+        font-size: 0.85rem;
+      }
+      .vertical-divider {
+        height: 30px;
+      }
+      .monogram-container img {
+        height: 28px;
+        max-width: 80px;
+      }
+    }
+
+    /* ========== MAIN WEBSITE STYLES ========== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    /* Hero Section with Background Image */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7), rgba(0, 20, 40, 0.8));
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, #00D4FF, #E8ECEF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      color: #B0B4B8;
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: #8A8F94;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    /* Services Grid - UPDATED with 4 new services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .service-card {
+      background: #0D0D0D;
+      padding: 40px 28px;
+      border-radius: 28px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      color: var(--electric-blue);
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--metallic-silver);
+    }
+
+    .service-card p {
+      color: #8A8F94;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Why Choose Us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .why-item {
+      background: #0D0D0D;
+      padding: 40px 24px;
+      border-radius: 28px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .why-item:hover {
+      border-color: var(--electric-blue);
+      transform: translateY(-5px);
+    }
+
+    .why-item i {
+      font-size: 3rem;
+      color: var(--electric-blue);
+      margin-bottom: 20px;
+    }
+
+    .why-item h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--metallic-silver);
+    }
+
+    /* About Section */
+    .about-stats {
+      background: #0D0D0D;
+      border-radius: 48px;
+      padding: 60px 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .about-text {
+      flex: 2;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--electric-blue);
+    }
+
+    .stats {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+      background: #111;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--electric-blue);
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      background: #0D0D0D;
+      border-radius: 28px;
+      padding: 32px;
+      border-top: 4px solid var(--electric-blue);
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+    }
+
+    .testimonial-text i {
+      color: var(--electric-blue);
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .testimonial-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .client-name {
+      font-weight: 700;
+      color: var(--electric-blue);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #0A0A0A, #050510);
+      border-radius: 60px;
+      padding: 80px 48px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    /* Contact Section */
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      background: #0D0D0D;
+      border-radius: 48px;
+      padding: 48px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .contact-form {
+      flex: 1.5;
+    }
+
+    .contact-form h3 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: var(--electric-blue);
+    }
+
+    .contact-info {
+      flex: 1;
+      background: #111;
+      padding: 32px;
+      border-radius: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00D4FF, #0099FF);
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-weight: bold;
+      color: #000;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .quick-contact a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      text-decoration: none;
+      color: var(--metallic-silver);
+      transition: var(--transition);
+    }
+
+    .quick-contact a:hover {
+      color: var(--electric-blue);
+    }
+
+    .quick-contact i {
+      width: 30px;
+      color: var(--electric-blue);
+    }
+
+    /* Footer */
+    footer {
+      background: #050505;
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-logo h3 {
+      font-size: 1.3rem;
+      color: var(--electric-blue);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--metallic-silver);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--electric-blue);
+    }
+
+    .social-icons a {
+      color: var(--metallic-silver);
+      font-size: 1.5rem;
+      margin-right: 20px;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      color: var(--electric-blue);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #1a1a1a;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 0;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .about-stats, .contact-flex {
+        padding: 30px 24px;
+      }
+      .cta-section {
+        padding: 50px 24px;
+      }
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+      .service-card h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo-wrapper">
+      <div class="monogram-container">
+        <img src="pic/logo (2).png" alt="UTL Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="logo-fallback">UTL</span>
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="brand-text-side">
+        <div class="universal-trans">UNIVERSAL TRANS</div>
+        <div class="logistics-line">
+          <span class="thin-blue-line"></span>
+          <span class="logistics-llc">LOGISTICS LLC</span>
+          <span class="thin-blue-line"></span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-primary" id="quoteBtnNav">
+        <i class="fas fa-truck-fast"></i> Get Quote
+      </a>
+    </div>
+    <div class="mobile-menu" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Dropdown -->
+<div id="mobileDropdown" style="display: none; position: fixed; top: 75px; left: 0; width: 100%; background: #000000; z-index: 999; border-bottom: 1px solid #00D4FF; padding: 20px; flex-direction: column; gap: 20px;">
+  <a href="#home" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Home</a>
+  <a href="#services" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Services</a>
+  <a href="#why" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Why Us</a>
+  <a href="#about" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">About</a>
+  <a href="#contact" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Contact</a>
+  <a href="#contact" class="btn btn-primary" style="text-align: center; justify-content: center;" id="mobileQuoteBtn">Get Quote</a>
+</div>
+
+<!-- Hero Section with Background Image -->
+<section id="home" class="hero">
+  <img src="pic/powerOnly2.jpg" alt="Logistics Truck" class="hero-bg-image" onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Driven by Precision.<br>Powered by Profit.</h1>
+    <p>Maximize your earnings with elite dispatch, premium freight, and 24/7 support. Join owner operators who scale with confidence.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary btn-large"><i class="fas fa-truck-fast"></i> Get a Quote</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-headset"></i> Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section - UPDATED with new detailed services -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Premium Logistics Services</h2>
+      <p>Comprehensive freight solutions designed to maximize your profitability</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3>🚛 Load Booking & Freight Matching</h3>
+        <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-headset"></i></div>
+        <h3>📞 24/7 Driver Support</h3>
+        <p>Providing round-the-clock assistance to drivers, solving issues, and offering guidance whenever needed.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-clock"></i></div>
+        <h3>💸 Detention & Layover Claims</h3>
+        <p>Handling and claiming extra charges from brokers when there are delays in loading or unloading.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-dollar-sign"></i></div>
+        <h3>💰 Rate Negotiation</h3>
+        <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure you get premium rates for every load.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-route"></i></div>
+        <h3>📍 Route Planning & Tracking</h3>
+        <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+        <h3>📄 Paperwork & Broker Coordination</h3>
+        <p>All documents handle karna aur broker se communication manage karna. Complete back-office support for hassle-free operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <h2>Why Choose Universal Trans</h2>
+      <p>Built to drive your profitability and peace of mind</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><i class="fas fa-clock"></i><h4>24/7 Dispatch Support</h4><p>Round-the-clock operational assistance for any timezone.</p></div>
+      <div class="why-item"><i class="fas fa-dollar-sign"></i><h4>High Paying Loads</h4><p>Exclusive contracts with top brokers to maximize margins.</p></div>
+      <div class="why-item"><i class="fas fa-users"></i><h4>Experienced Team</h4><p>Decades of logistics & carrier management expertise.</p></div>
+      <div class="why-item"><i class="fas fa-map-marked-alt"></i><h4>Real-time Tracking</h4><p>Live visibility and proactive route optimization.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- About + Stats -->
+<section id="about">
+  <div class="container">
+    <div class="about-stats">
+      <div class="about-text">
+        <h2>About Universal Trans Logistics</h2>
+        <p style="margin-bottom: 20px;">Founded by industry veterans, we blend cutting-edge technology with a driver-first approach. Our mission: empower owner operators and fleets to achieve unrivaled profitability through precision dispatching and dedicated support.</p>
+        <p>We don't just move freight — we move your business forward. Every load, every mile, every decision is optimized for profit. Join a network that puts drivers at the center.</p>
+      </div>
+      <div class="stats">
+        <div class="stat-item"><div class="stat-number">12,580+</div><div>Loads Delivered</div></div>
+        <div class="stat-item"><div class="stat-number">8+ Years</div><div>Industry Experience</div></div>
+        <div class="stat-item"><div class="stat-number">340+</div><div>Happy Owner Operators</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Trusted by Drivers & Fleets</h2>
+      <p>Real results from the road</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>UTL transformed my business! Revenue increased 35% in 3 months, dispatchers are pros.</p></div><div class="client-name">— Michael R., Owner Operator</div></div>
+      <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>Best dispatch service I've ever used. They find high-paying loads and handle everything 24/7.</p></div><div class="client-name">— Jessica T., Fleet Owner</div></div>
+      <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>Reliable, transparent, and truly profit-driven. Glad I switched to Universal Trans.</p></div><div class="client-name">— Derrick L., Independent Driver</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<div class="container">
+  <div class="cta-section">
+    <h2>Ready to Maximize Your Profits?</h2>
+    <a href="#contact" class="btn btn-primary btn-large"><i class="fas fa-arrow-right"></i> Join Universal Trans Today</a>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-flex">
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <form id="leadForm">
+          <div class="form-group"><input type="text" placeholder="Full Name" required id="name"></div>
+          <div class="form-group"><input type="email" placeholder="Email Address" required id="email"></div>
+          <div class="form-group"><input type="tel" placeholder="Phone Number" required id="phone"></div>
+          <div class="form-group"><textarea rows="4" placeholder="Tell us about your trucking needs..." id="message"></textarea></div>
+          <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+          <p style="margin-top: 12px;" id="formFeedback"></p>
+        </form>
+      </div>
+      <div class="contact-info">
+        <h4 style="color: var(--electric-blue); margin-bottom: 20px;">Quick Contact</h4>
+        <div class="quick-contact">
+          <a href="tel:+15876994068"><i class="fas fa-phone-alt"></i> +1 (587) 699-4068</a>
+          <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+          <a href="mailto:rafaysmith.utl@gmail.com"><i class="fas fa-envelope"></i> rafaysmith.utl@gmail.com</a>
+        </div>
+        <hr style="margin: 30px 0; border-color: #222;">
+        <p><i class="fas fa-map-marker-alt"></i> 2200 Logistics Way, Suite 400, Dallas, TX</p>
+        <p style="margin-top: 16px;"><strong>24/7 Dispatch Hotline:</strong><br> +1 (587) 699-4068</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <h3>UNIVERSAL TRANS</h3>
+        <p style="color: #666; margin-top: 10px;">Driven by Precision.<br>Powered by Profit.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#why">Why Us</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
+          <a href="#">Load Booking</a>
+          <a href="#">Rate Negotiation</a>
+          <a href="#">Route Planning</a>
+          <a href="#">Broker Coordination</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Universal Trans Logistics LLC. All Rights Reserved. Premium Freight Solutions.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileDropdown = document.getElementById('mobileDropdown');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileBtn && mobileDropdown) {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+    mobileDropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileDropdown.style.display = 'none');
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 968) {
+      if (mobileDropdown) mobileDropdown.style.display = 'none';
+      if (navLinks) navLinks.style.display = 'flex';
+    } else {
+      if (navLinks) navLinks.style.display = 'none';
+    }
+  });
+
+  if (window.innerWidth <= 968) {
+    if (navLinks) navLinks.style.display = 'none';
+  } else {
+    if (navLinks) navLinks.style.display = 'flex';
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (mobileDropdown) mobileDropdown.style.display = 'none';
+      }
+    });
+  });
+
+  // Form submission
+  const form = document.getElementById('leadForm');
+  const feedback = document.getElementById('formFeedback');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      if (name.trim()) {
+        feedback.innerHTML = '<span style="color: #00D4FF;">✅ Thank you! Our team will contact you within 24 hours.</span>';
+        form.reset();
+        setTimeout(() => feedback.innerHTML = '', 4000);
+      } else {
+        feedback.innerHTML = '<span style="color: #FF6B00;">Please fill all fields.</span>';
+      }
+    });
+  }
+
+  // Quote buttons
+  document.getElementById('quoteBtnNav')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('mobileQuoteBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    if (mobileDropdown) mobileDropdown.style.display = 'none';
+  });
+</script>
+</body>
+</html>
