@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universal Trans Logistics</title>
-  <link rel="icon" type="png" href="pic/logoog2.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Universal Trans Logistics | Elite Dispatch</title>
+  <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
-    /* ========== NAVBAR CSS - COMPLETE STANDALONE ========== */
-    
+    /* ========== GLOBAL RESET & VARIABLES ========== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Color Variables */
     :root {
       --pure-black: #000000;
       --deep-black: #0A0A0A;
@@ -33,12 +31,54 @@
 
     body {
       font-family: 'Poppins', 'Segoe UI', sans-serif;
-      background: var(--pure-black); 
+      background: var(--pure-black);
       color: var(--metallic-silver);
       overflow-x: hidden;
     }
 
-    /* Navbar Container */
+    /* ========== LOADING ANIMATION (FEATURE 1) ========== */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader-truck {
+      font-size: 4.5rem;
+      color: var(--electric-blue);
+      animation: truckDrive 1.2s infinite alternate ease-in-out;
+      filter: drop-shadow(0 0 12px var(--electric-blue));
+    }
+    @keyframes truckDrive {
+      0% { transform: translateX(-30px); opacity: 0.6; }
+      100% { transform: translateX(30px); opacity: 1; }
+    }
+    .loader-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulseGlow 1.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; text-shadow: 0 0 8px var(--electric-blue);}
+    }
+
+    /* ========== NAVBAR ========== */
     .navbar {
       position: fixed;
       top: 0;
@@ -49,14 +89,12 @@
       padding: 20px 0;
       background: transparent;
     }
-
     .navbar.scrolled {
       background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(12px);
       padding: 12px 0;
       border-bottom: 1px solid rgba(0, 212, 255, 0.2);
     }
-
     .nav-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -65,15 +103,11 @@
       justify-content: space-between;
       align-items: center;
     }
-
-    /* ========== LOGO AREA ========== */
     .logo-wrapper {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
-    /* Logo Image Styling */
     .monogram-container img {
       height: 50px;
       width: auto;
@@ -84,24 +118,9 @@
       filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
       transition: var(--transition);
     }
-
     .monogram-container img:hover {
       filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
     }
-
-    /* Fallback text styling if image fails to load */
-    .monogram-container .logo-fallback {
-      display: none;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      font-weight: 900;
-      font-size: 2rem;
-      background: linear-gradient(145deg, #D4D8DC 0%, #F0F4F8 25%, #A8ACB0 50%, #D0D4D8 75%, #B8BCBF 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* Vertical Divider */
     .vertical-divider {
       width: 2px;
       height: 55px;
@@ -109,15 +128,12 @@
       box-shadow: 0 0 8px var(--electric-blue);
       margin: 0 8px;
     }
-
-    /* Brand Text */
     .brand-text-side {
       display: flex;
       flex-direction: column;
     }
-
     .universal-trans {
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: 1px;
@@ -127,53 +143,43 @@
       color: transparent;
       line-height: 1.2;
     }
-
     .logistics-line {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-top: 4px;
     }
-
     .thin-blue-line {
       width: 35px;
       height: 1.5px;
       background: var(--electric-blue);
       box-shadow: 0 0 4px var(--electric-blue);
     }
-
     .logistics-llc {
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 600;
       font-size: 0.7rem;
       letter-spacing: 3px;
       color: var(--electric-blue);
       text-transform: uppercase;
     }
-
-    /* ========== NAVIGATION LINKS ========== */
     .nav-links {
       display: flex;
       gap: 36px;
       align-items: center;
     }
-
     .nav-links a {
       text-decoration: none;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
       font-weight: 500;
       color: var(--metallic-silver);
       transition: var(--transition);
       font-size: 0.95rem;
       letter-spacing: 0.5px;
     }
-
     .nav-links a:hover {
       color: var(--electric-blue);
       text-shadow: 0 0 5px var(--electric-blue-glow);
     }
-
-    /* ========== BUTTONS ========== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -186,27 +192,21 @@
       cursor: pointer;
       text-decoration: none;
       border: none;
-      letter-spacing: 0.5px;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, #00D4FF, #0099FF);
       color: #000000;
       box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
       font-weight: 700;
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
     }
-
     .btn-large {
       padding: 14px 36px;
       font-size: 1.1rem;
     }
-
     .btn-outline {
       background: transparent;
       border: 2px solid #00D4FF;
@@ -219,23 +219,401 @@
       gap: 8px;
       transition: var(--transition);
     }
-
     .btn-outline:hover {
       background: rgba(0, 212, 255, 0.1);
       transform: translateY(-2px);
     }
-
-    /* ========== MOBILE MENU ========== */
     .mobile-menu {
       display: none;
       font-size: 28px;
       color: var(--electric-blue);
       cursor: pointer;
-      transition: var(--transition);
     }
 
-    .mobile-menu:hover {
-      text-shadow: 0 0 10px var(--electric-blue);
+    /* ========== HERO SECTION ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7), rgba(0, 20, 40, 0.8));
+      z-index: 1;
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+      position: relative;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, #00D4FF, #E8ECEF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      color: #B0B4B8;
+      margin-bottom: 40px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ========== CINEMATIC VISUAL BREAK (FEATURE 2) ========== */
+    .visual-break {
+      background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed;
+      padding: 120px 0;
+      text-align: center;
+      background-attachment: fixed;
+      margin: 40px 0;
+      border-top: 1px solid rgba(0, 212, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    .visual-break h2 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .visual-break h2 span {
+      color: var(--electric-blue);
+      display: inline-block;
+    }
+
+    /* ========== MAIN SECTIONS ========== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    section {
+      padding: 100px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      color: #8A8F94;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .service-card {
+      background: #0D0D0D;
+      padding: 40px 28px;
+      border-radius: 28px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+    }
+    .service-icon {
+      font-size: 3.5rem;
+      color: var(--electric-blue);
+      margin-bottom: 24px;
+    }
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      color: var(--metallic-silver);
+    }
+    .service-card p {
+      color: #8A8F94;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .why-item {
+      background: #0D0D0D;
+      padding: 40px 24px;
+      border-radius: 28px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition);
+    }
+    .why-item:hover {
+      border-color: var(--electric-blue);
+      transform: translateY(-5px);
+    }
+    .why-item i {
+      font-size: 3rem;
+      color: var(--electric-blue);
+      margin-bottom: 20px;
+    }
+    .why-item h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--metallic-silver);
+    }
+    .why-item p {
+      color: #8A8F94;
+    }
+    .about-stats {
+      background: #0D0D0D;
+      border-radius: 48px;
+      padding: 60px 48px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+    .about-text {
+      flex: 2;
+    }
+    .about-text h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--electric-blue);
+    }
+    .about-text p {
+      color: #B0B4B8;
+      line-height: 1.6;
+    }
+    .stats {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stat-item {
+      text-align: center;
+      background: #111;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--electric-blue);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .testimonial-card {
+      background: #0D0D0D;
+      border-radius: 28px;
+      padding: 32px;
+      border-top: 4px solid var(--electric-blue);
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+    }
+    .testimonial-text i {
+      color: var(--electric-blue);
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .testimonial-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .client-name {
+      font-weight: 700;
+      color: var(--electric-blue);
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #0A0A0A, #050510);
+      border-radius: 60px;
+      padding: 80px 48px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      margin: 60px 0;
+    }
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 24px;
+    }
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      background: #0D0D0D;
+      border-radius: 48px;
+      padding: 48px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+    .contact-form {
+      flex: 1.5;
+    }
+    .contact-form h3 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: var(--electric-blue);
+    }
+    .contact-info {
+      flex: 1;
+      background: #111;
+      padding: 32px;
+      border-radius: 32px;
+    }
+    .contact-info h4 {
+      color: var(--electric-blue);
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00D4FF, #0099FF);
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-weight: bold;
+      color: #000;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+    .quick-contact a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      text-decoration: none;
+      color: var(--metallic-silver);
+      transition: var(--transition);
+    }
+    .quick-contact a:hover {
+      color: var(--electric-blue);
+    }
+    .quick-contact i {
+      width: 30px;
+      color: var(--electric-blue);
+    }
+    footer {
+      background: #050505;
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      margin-top: 60px;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-logo h3 {
+      font-size: 1.3rem;
+      color: var(--electric-blue);
+    }
+    .footer-links {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      display: block;
+      color: var(--metallic-silver);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--electric-blue);
+    }
+    .social-icons a {
+      color: var(--metallic-silver);
+      font-size: 1.5rem;
+      margin-right: 20px;
+      transition: var(--transition);
+    }
+    .social-icons a:hover {
+      color: var(--electric-blue);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #1a1a1a;
+      color: #666;
+      font-size: 0.9rem;
     }
 
     /* ========== RESPONSIVE ========== */
@@ -246,25 +624,47 @@
       .mobile-menu {
         display: block;
       }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      .visual-break h2 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      section {
+        padding: 60px 0;
+      }
+      .about-stats, .contact-flex {
+        padding: 30px 24px;
+      }
+      .cta-section {
+        padding: 50px 24px;
+      }
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+      .service-card h3 {
+        font-size: 1.2rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
       .monogram-container img {
         height: 38px;
-        max-width: 130px;
-      }
-      .vertical-divider {
-        height: 40px;
       }
       .universal-trans {
         font-size: 1.1rem;
       }
-      .nav-container {
-        padding: 0 20px;
-      }
-      .logistics-llc {
-        font-size: 0.55rem;
-        letter-spacing: 2px;
-      }
-      .thin-blue-line {
-        width: 20px;
+      .vertical-divider {
+        height: 40px;
       }
     }
 
@@ -281,467 +681,58 @@
       }
       .monogram-container img {
         height: 28px;
-        max-width: 80px;
       }
     }
 
-    /* ========== MAIN WEBSITE STYLES ========== */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    section {
-      padding: 100px 0;
-    }
-
-    /* Hero Section with Background Image */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-image {
-      position: absolute;
-      top: 0;
+    /* Mobile Dropdown */
+    #mobileDropdown {
+      display: none;
+      position: fixed;
+      top: 75px;
       left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7), rgba(0, 20, 40, 0.8));
-      z-index: 1;
-    }
-
-    .hero-content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-      z-index: 2;
-      position: relative;
-    }
-
-    .hero-content h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF, #00D4FF, #E8ECEF);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-
-    .hero-content p {
-      font-size: 1.3rem;
-      color: #B0B4B8;
-      margin-bottom: 40px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* Section Headers */
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 16px;
-    }
-
-    .section-header p {
-      color: #8A8F94;
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-    }
-
-    /* Services Grid - UPDATED with 4 new services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-    }
-
-    .service-card {
-      background: #0D0D0D;
-      padding: 40px 28px;
-      border-radius: 28px;
-      text-align: center;
-      transition: var(--transition);
-      border: 1px solid rgba(0, 212, 255, 0.15);
-      cursor: pointer;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--electric-blue);
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
-    }
-
-    .service-icon {
-      font-size: 3.5rem;
-      color: var(--electric-blue);
-      margin-bottom: 24px;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-      color: var(--metallic-silver);
-    }
-
-    .service-card p {
-      color: #8A8F94;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* Why Choose Us */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
-    .why-item {
-      background: #0D0D0D;
-      padding: 40px 24px;
-      border-radius: 28px;
-      text-align: center;
-      border: 1px solid rgba(0, 212, 255, 0.1);
-      transition: var(--transition);
-    }
-
-    .why-item:hover {
-      border-color: var(--electric-blue);
-      transform: translateY(-5px);
-    }
-
-    .why-item i {
-      font-size: 3rem;
-      color: var(--electric-blue);
-      margin-bottom: 20px;
-    }
-
-    .why-item h4 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--metallic-silver);
-    }
-
-    /* About Section */
-    .about-stats {
-      background: #0D0D0D;
-      border-radius: 48px;
-      padding: 60px 48px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 48px;
-      justify-content: space-between;
-      align-items: center;
-      border: 1px solid rgba(0, 212, 255, 0.2);
-    }
-
-    .about-text {
-      flex: 2;
-    }
-
-    .about-text h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: var(--electric-blue);
-    }
-
-    .stats {
-      flex: 1;
-      display: flex;
+      background: #000000;
+      z-index: 999;
+      border-bottom: 1px solid #00D4FF;
+      padding: 20px;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
-
-    .stat-item {
-      text-align: center;
-      background: #111;
-      padding: 24px;
-      border-radius: 28px;
-      border: 1px solid rgba(0, 212, 255, 0.2);
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--electric-blue);
-    }
-
-    /* Testimonials */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-    }
-
-    .testimonial-card {
-      background: #0D0D0D;
-      border-radius: 28px;
-      padding: 32px;
-      border-top: 4px solid var(--electric-blue);
+    #mobileDropdown a {
+      color: #E8ECEF;
+      text-decoration: none;
+      font-family: Poppins;
+      font-size: 1.1rem;
       transition: var(--transition);
     }
-
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+    #mobileDropdown a:hover {
+      color: #00D4FF;
     }
-
-    .testimonial-text i {
-      color: var(--electric-blue);
-      font-size: 2rem;
-      margin-bottom: 16px;
-      display: inline-block;
-    }
-
-    .testimonial-text p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .client-name {
-      font-weight: 700;
-      color: var(--electric-blue);
-    }
-
-    /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, #0A0A0A, #050510);
-      border-radius: 60px;
-      padding: 80px 48px;
+    #mobileDropdown .btn-primary {
       text-align: center;
-      border: 1px solid rgba(0, 212, 255, 0.3);
-    }
-
-    .cta-section h2 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 24px;
-    }
-
-    /* Contact Section */
-    .contact-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 48px;
-      background: #0D0D0D;
-      border-radius: 48px;
-      padding: 48px;
-      border: 1px solid rgba(0, 212, 255, 0.2);
-    }
-
-    .contact-form {
-      flex: 1.5;
-    }
-
-    .contact-form h3 {
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-      color: var(--electric-blue);
-    }
-
-    .contact-info {
-      flex: 1;
-      background: #111;
-      padding: 32px;
-      border-radius: 32px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 20px;
-      border-radius: 28px;
-      border: 1px solid #333;
-      background: #111;
-      color: white;
-      font-family: inherit;
-      transition: var(--transition);
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--electric-blue);
-      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-    }
-
-    button[type="submit"] {
+      justify-content: center;
       background: linear-gradient(135deg, #00D4FF, #0099FF);
-      border: none;
-      width: 100%;
-      padding: 14px;
-      font-weight: bold;
       color: #000;
-      border-radius: 40px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    button[type="submit"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-    }
-
-    .quick-contact a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 20px;
-      text-decoration: none;
-      color: var(--metallic-silver);
-      transition: var(--transition);
-    }
-
-    .quick-contact a:hover {
-      color: var(--electric-blue);
-    }
-
-    .quick-contact i {
-      width: 30px;
-      color: var(--electric-blue);
-    }
-
-    /* Footer */
-    footer {
-      background: #050505;
-      padding: 60px 0 30px;
-      border-top: 1px solid rgba(0, 212, 255, 0.2);
-      margin-top: 60px;
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-logo h3 {
-      font-size: 1.3rem;
-      color: var(--electric-blue);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      display: block;
-      color: var(--metallic-silver);
-      text-decoration: none;
-      margin-bottom: 12px;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: var(--electric-blue);
-    }
-
-    .social-icons a {
-      color: var(--metallic-silver);
-      font-size: 1.5rem;
-      margin-right: 20px;
-      transition: var(--transition);
-    }
-
-    .social-icons a:hover {
-      color: var(--electric-blue);
-    }
-
-    .copyright {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid #1a1a1a;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: 60px 0;
-      }
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      .hero-content p {
-        font-size: 1rem;
-      }
-      .section-header h2 {
-        font-size: 2rem;
-      }
-      .container {
-        padding: 0 20px;
-      }
-      .about-stats, .contact-flex {
-        padding: 30px 24px;
-      }
-      .cta-section {
-        padding: 50px 24px;
-      }
-      .cta-section h2 {
-        font-size: 1.8rem;
-      }
-      .service-card h3 {
-        font-size: 1.3rem;
-      }
+      width: 100%;
     }
   </style>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+<!-- ========== LOADING ANIMATION ========== -->
+<div class="loader-wrapper" id="loaderWrapper">
+  <div class="loader-truck"><i class="fas fa-truck-moving"></i></div>
+  <div class="loader-text">UNIVERSAL TRANS LOGISTICS</div>
+</div>
 
 <!-- ========== NAVBAR ========== -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <div class="logo-wrapper">
       <div class="monogram-container">
-        <img src="pic/logoog2.png" alt="UTL Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <span class="logo-fallback">UTL</span>
+        <img src="pic/logoog2.png" alt="UTL Logo" onerror="this.style.display='none';">
       </div>
       <div class="vertical-divider"></div>
       <div class="brand-text-side">
@@ -759,27 +750,22 @@
       <a href="#why">Why Us</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#contact" class="btn btn-primary" id="quoteBtnNav">
-        <i class="fas fa-truck-fast"></i> Get Quote
-      </a>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-truck-fast"></i> Get Quote</a>
     </div>
-    <div class="mobile-menu" id="mobileMenuBtn">
-      <i class="fas fa-bars"></i>
-    </div>
+    <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
   </div>
 </nav>
 
-<!-- Mobile Dropdown -->
-<div id="mobileDropdown" style="display: none; position: fixed; top: 75px; left: 0; width: 100%; background: #000000; z-index: 999; border-bottom: 1px solid #00D4FF; padding: 20px; flex-direction: column; gap: 20px;">
-  <a href="#home" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Home</a>
-  <a href="#services" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Services</a>
-  <a href="#why" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Why Us</a>
-  <a href="#about" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">About</a>
-  <a href="#contact" style="color: #E8ECEF; text-decoration: none; font-family: Poppins; font-size: 1.1rem;">Contact</a>
-  <a href="#contact" class="btn btn-primary" style="text-align: center; justify-content: center;" id="mobileQuoteBtn">Get Quote</a>
+<div id="mobileDropdown">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#why">Why Us</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Get Quote</a>
 </div>
 
-<!-- Hero Section with Background Image -->
+<!-- Hero Section -->
 <section id="home" class="hero">
   <img src="pic/powerOnly2.jpg" alt="Logistics Truck" class="hero-bg-image" onerror="this.style.display='none'">
   <div class="hero-overlay"></div>
@@ -793,7 +779,7 @@
   </div>
 </section>
 
-<!-- Services Section - UPDATED with new detailed services -->
+<!-- Services Section -->
 <section id="services">
   <div class="container">
     <div class="section-header">
@@ -801,36 +787,12 @@
       <p>Comprehensive freight solutions designed to maximize your profitability</p>
     </div>
     <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
-        <h3>🚛 Load Booking & Freight Matching</h3>
-        <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-headset"></i></div>
-        <h3>📞 24/7 Driver Support</h3>
-        <p>Providing round-the-clock assistance to drivers, solving issues, and offering guidance whenever needed.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-clock"></i></div>
-        <h3>💸 Detention & Layover Claims</h3>
-        <p>Handling and claiming extra charges from brokers when there are delays in loading or unloading.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-dollar-sign"></i></div>
-        <h3>💰 Rate Negotiation</h3>
-        <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure you get premium rates for every load.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-route"></i></div>
-        <h3>📍 Route Planning & Tracking</h3>
-        <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-file-alt"></i></div>
-        <h3>📄 Paperwork & Broker Coordination</h3>
-        <p>All documents handle karna aur broker se communication manage karna. Complete back-office support for hassle-free operations.</p>
-      </div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-calendar-check"></i></div><h3>🚛 Load Booking & Freight Matching</h3><p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-headset"></i></div><h3>📞 24/7 Driver Support</h3><p>Round-the-clock assistance to drivers, solving issues, and offering guidance on the road.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-clock"></i></div><h3>💸 Detention & Layover Claims</h3><p>Handling and claiming extra charges from brokers for delays, ensuring you get paid for waiting time.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-dollar-sign"></i></div><h3>💰 Rate Negotiation</h3><p>Brokers se highest possible rate secure karwana. Expert negotiators ensure premium rates for every load.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-route"></i></div><h3>📍 Route Planning & Tracking</h3><p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-file-alt"></i></div><h3>📄 Paperwork & Broker Coordination</h3><p>All documents handle karna aur broker se communication manage karna. Complete back-office support.</p></div>
     </div>
   </div>
 </section>
@@ -868,6 +830,13 @@
     </div>
   </div>
 </section>
+
+<!-- Cinematic Visual Break -->
+<div class="visual-break">
+  <div class="container">
+    <h2>We Don't Chase Loads.<br><span>We Secure Profits.</span></h2>
+  </div>
+</div>
 
 <!-- Testimonials -->
 <section>
@@ -908,7 +877,7 @@
         </form>
       </div>
       <div class="contact-info">
-        <h4 style="color: var(--electric-blue); margin-bottom: 20px;">Quick Contact</h4>
+        <h4>Quick Contact</h4>
         <div class="quick-contact">
           <a href="tel:+15876994068"><i class="fas fa-phone-alt"></i> +1 (587) 699-4068</a>
           <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
@@ -964,6 +933,17 @@
 </footer>
 
 <script>
+  // Loader hide
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loaderWrapper');
+    if(loader) {
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1000);
+    }
+  });
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -974,34 +954,25 @@
   // Mobile menu toggle
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileDropdown = document.getElementById('mobileDropdown');
-  const navLinks = document.querySelector('.nav-links');
-
   if (mobileBtn && mobileDropdown) {
     mobileBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
     });
     mobileDropdown.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileDropdown.style.display = 'none');
+      link.addEventListener('click', () => {
+        mobileDropdown.style.display = 'none';
+      });
     });
   }
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 968) {
-      if (mobileDropdown) mobileDropdown.style.display = 'none';
-      if (navLinks) navLinks.style.display = 'flex';
-    } else {
-      if (navLinks) navLinks.style.display = 'none';
+    if (window.innerWidth > 968 && mobileDropdown) {
+      mobileDropdown.style.display = 'none';
     }
   });
 
-  if (window.innerWidth <= 968) {
-    if (navLinks) navLinks.style.display = 'none';
-  } else {
-    if (navLinks) navLinks.style.display = 'flex';
-  }
-
-  // Smooth scroll
+  // Smooth scroll for all anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -1015,7 +986,7 @@
     });
   });
 
-  // Form submission
+  // Form submission feedback
   const form = document.getElementById('leadForm');
   const feedback = document.getElementById('formFeedback');
   if (form) {
@@ -1031,17 +1002,6 @@
       }
     });
   }
-
-  // Quote buttons
-  document.getElementById('quoteBtnNav')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  });
-  document.getElementById('mobileQuoteBtn')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    if (mobileDropdown) mobileDropdown.style.display = 'none';
-  });
 </script>
 </body>
 </html>
