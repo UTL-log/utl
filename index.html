@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Universal Trans Logistics | Elite Dispatch</title>
+  <title>Universal Trans Logistics</title>
   <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
     /* ========== GLOBAL RESET & VARIABLES ========== */
@@ -36,7 +36,7 @@
       overflow-x: hidden;
     }
 
-    /* ========== LOADING ANIMATION (FEATURE 1) ========== */
+    /* ========== LOADING ANIMATION ========== */
     .loader-wrapper {
       position: fixed;
       top: 0;
@@ -180,6 +180,57 @@
       color: var(--electric-blue);
       text-shadow: 0 0 5px var(--electric-blue-glow);
     }
+
+    /* Dropdown Menu Styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown .dropbtn {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--metallic-silver);
+      transition: var(--transition);
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .dropdown .dropbtn:hover {
+      color: var(--electric-blue);
+      text-shadow: 0 0 5px var(--electric-blue-glow);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background-color: #0D0D0D;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      z-index: 1;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      overflow: hidden;
+    }
+    .dropdown-content a {
+      color: var(--metallic-silver);
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .dropdown-content a:hover {
+      background-color: rgba(0, 212, 255, 0.15);
+      color: var(--electric-blue);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -230,7 +281,7 @@
       cursor: pointer;
     }
 
-    /* ========== HERO SECTION ========== */
+    /* ========== HERO SECTION WITH SCROLL ARROW ========== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -287,7 +338,65 @@
       flex-wrap: wrap;
     }
 
-    /* ========== CINEMATIC VISUAL BREAK (FEATURE 2) ========== */
+    /* Scroll Down Arrow - Moving Animation */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      transition: opacity 0.3s ease;
+    }
+    .scroll-indicator a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--electric-blue);
+      gap: 8px;
+    }
+    .scroll-indicator .mouse {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--electric-blue);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    .scroll-indicator .mouse .wheel {
+      width: 4px;
+      height: 10px;
+      background: var(--electric-blue);
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      animation: scrollWheel 1.5s infinite;
+      box-shadow: 0 0 5px var(--electric-blue);
+    }
+    .scroll-indicator .arrow-down {
+      font-size: 1.2rem;
+      margin-top: 5px;
+      animation: arrowMove 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    @keyframes scrollWheel {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+    }
+    @keyframes arrowMove {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
+    /* ========== CINEMATIC VISUAL BREAK ========== */
     .visual-break {
       background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed;
       padding: 120px 0;
@@ -666,6 +775,9 @@
       .vertical-divider {
         height: 40px;
       }
+      .scroll-indicator {
+        bottom: 20px;
+      }
     }
 
     @media (max-width: 580px) {
@@ -746,7 +858,17 @@
     </div>
     <div class="nav-links">
       <a href="#home">Home</a>
-      <a href="#services">Services</a>
+      <div class="dropdown">
+        <button class="dropbtn">Services <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+          <a href="#services">Load Booking & Freight Matching</a>
+          <a href="#services">24/7 Driver Support</a>
+          <a href="#services">Detention & Layover Claims</a>
+          <a href="#services">Rate Negotiation</a>
+          <a href="#services">Route Planning & Tracking</a>
+          <a href="#services">Paperwork & Broker Coordination</a>
+        </div>
+      </div>
       <a href="#why">Why Us</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -765,7 +887,7 @@
   <a href="#contact" class="btn btn-primary">Get Quote</a>
 </div>
 
-<!-- Hero Section -->
+<!-- Hero Section with Scroll Arrow -->
 <section id="home" class="hero">
   <img src="pic/powerOnly2.jpg" alt="Logistics Truck" class="hero-bg-image" onerror="this.style.display='none'">
   <div class="hero-overlay"></div>
@@ -776,6 +898,18 @@
       <a href="#contact" class="btn btn-primary btn-large"><i class="fas fa-truck-fast"></i> Get a Quote</a>
       <a href="#contact" class="btn-outline"><i class="fas fa-headset"></i> Contact Us</a>
     </div>
+  </div>
+  
+  <!-- Animated Scroll Down Arrow -->
+  <div class="scroll-indicator" id="scrollArrow">
+    <a href="#services">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow-down">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -910,10 +1044,10 @@
         </div>
         <div>
           <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
-          <a href="#">Load Booking</a>
-          <a href="#">Rate Negotiation</a>
-          <a href="#">Route Planning</a>
-          <a href="#">Broker Coordination</a>
+          <a href="#services">Load Booking</a>
+          <a href="#services">Rate Negotiation</a>
+          <a href="#services">Route Planning</a>
+          <a href="#services">Broker Coordination</a>
         </div>
       </div>
       <div>
@@ -972,7 +1106,7 @@
     }
   });
 
-  // Smooth scroll for all anchor links
+  // Smooth scroll for all anchor links (including scroll arrow)
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
