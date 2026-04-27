@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Trans Logistics</title>
+  <link rel="icon" type="image/png" href="pic/logoog2.png">
+  <style>
+    /* ========== NAVBAR & FOOTER CSS - HOME PAGE JESA ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pure-black: #000000;
+      --deep-black: #0A0A0A;
+      --metallic-silver: #E8ECEF;
+      --electric-blue: #00D4FF;
+      --electric-blue-glow: rgba(0, 212, 255, 0.5);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: var(--pure-black);
+      color: var(--metallic-silver);
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 20px 0;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .monogram-container img {
+      height: 50px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+      filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
+    }
+    .vertical-divider {
+      width: 2px;
+      height: 55px;
+      background: var(--electric-blue);
+      box-shadow: 0 0 8px var(--electric-blue);
+      margin: 0 8px;
+    }
+    .brand-text-side {
+      display: flex;
+      flex-direction: column;
+    }
+    .universal-trans {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #E8ECEF 0%, #C0C4C8 50%, #F5F8FC 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logistics-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .thin-blue-line {
+      width: 35px;
+      height: 1.5px;
+      background: var(--electric-blue);
+      box-shadow: 0 0 4px var(--electric-blue);
+    }
+    .logistics-llc {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--electric-blue);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--metallic-silver);
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: var(--electric-blue);
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      background: none;
+      border: none;
+      font-weight: 500;
+      color: var(--metallic-silver);
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dropbtn:hover {
+      color: var(--electric-blue);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background-color: #0D0D0D;
+      min-width: 240px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      z-index: 1001;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      overflow: hidden;
+    }
+    .dropdown-content a {
+      color: var(--metallic-silver);
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      font-size: 0.85rem;
+    }
+    .dropdown-content a:hover {
+      background-color: rgba(0, 212, 255, 0.15);
+      color: var(--electric-blue);
+    }
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #00D4FF, #0099FF);
+      color: #000000;
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      color: var(--electric-blue);
+      cursor: pointer;
+    }
+
+    /* Page Content Styling */
+    .page-content {
+      min-height: 60vh;
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+    .page-content h1 {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+    .page-content p {
+      color: #B0B4B8;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ========== FOOTER (HOME PAGE JESA) ========== */
+    footer {
+      background: #050505;
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      margin-top: 60px;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-logo h3 {
+      font-size: 1.3rem;
+      color: var(--electric-blue);
+    }
+    .footer-links {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      display: block;
+      color: var(--metallic-silver);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--electric-blue);
+    }
+    .social-icons a {
+      color: var(--metallic-silver);
+      font-size: 1.5rem;
+      margin-right: 20px;
+      transition: var(--transition);
+    }
+    .social-icons a:hover {
+      color: var(--electric-blue);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #1a1a1a;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .universal-trans {
+        font-size: 1.1rem;
+      }
+      .monogram-container img {
+        height: 38px;
+      }
+      .vertical-divider {
+        height: 40px;
+      }
+      .page-content h1 {
+        font-size: 2rem;
+      }
+    }
+
+    #mobileDropdown {
+      display: none;
+      position: fixed;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      background: #000000;
+      z-index: 999;
+      border-bottom: 1px solid #00D4FF;
+      padding: 20px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #mobileDropdown a {
+      color: #E8ECEF;
+      text-decoration: none;
+      font-family: Poppins;
+      font-size: 1.1rem;
+    }
+    #mobileDropdown a:hover {
+      color: #00D4FF;
+    }
+    #mobileDropdown .btn-primary {
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- ========== NAVBAR (HOME PAGE JESA) ========== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo-wrapper">
+      <div class="monogram-container">
+        <img src="pic/logoog2.png" alt="UTL Logo">
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="brand-text-side">
+        <div class="universal-trans">UNIVERSAL TRANS</div>
+        <div class="logistics-line">
+          <span class="thin-blue-line"></span>
+          <span class="logistics-llc">LOGISTICS LLC</span>
+          <span class="thin-blue-line"></span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <div class="dropdown" id="servicesDropdown">
+        <button class="dropbtn" id="dropBtn">Services <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+          <a href="services.html">All Services</a>
+          <a href="services.html#load-booking">Load Booking & Freight Matching</a>
+          <a href="services.html#driver-support">24/7 Driver Support</a>
+          <a href="services.html#detention">Detention & Layover Claims</a>
+          <a href="services.html#rate-negotiation">Rate Negotiation</a>
+          <a href="services.html#route-planning">Route Planning & Tracking</a>
+          <a href="services.html#paperwork">Paperwork & Broker Coordination</a>
+        </div>
+      </div>
+      <a href="why-us.html">Why Us</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="quote.html" class="btn btn-primary"><i class="fas fa-truck-fast"></i> Get Quote</a>
+    </div>
+    <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<div id="mobileDropdown">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="why-us.html">Why Us</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="quote.html" class="btn btn-primary">Get Quote</a>
+</div>
+
+<!-- ========== PAGE CONTENT (YAHAN AAP APNA CONTENT DALENGE) ========== -->
+<div class="page-content">
+  <div class="container">
+    <h1>Page Title</h1>
+    <p>Yahan aap apna content daal sakte hain. Ye sirf placeholder hai. Aapko jo bhi add karna hai yahan add karein.</p>
+  </div>
+</div>
+
+<!-- ========== FOOTER (HOME PAGE JESA) ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <h3>UNIVERSAL TRANS</h3>
+        <p style="color: #666; margin-top: 10px;">Driven by Precision.<br>Powered by Profit.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Quick Links</h4>
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="why-us.html">Why Us</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
+          <a href="services.html">Load Booking</a>
+          <a href="services.html">Rate Negotiation</a>
+          <a href="services.html">Route Planning</a>
+          <a href="services.html">Broker Coordination</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Universal Trans Logistics LLC. All Rights Reserved. Premium Freight Solutions.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+
+  // Dropdown toggle
+  const dropBtn = document.getElementById('dropBtn');
+  const dropdown = document.getElementById('servicesDropdown');
+  if (dropBtn && dropdown) {
+    dropBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('show');
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
+    });
+  }
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileDropdown = document.getElementById('mobileDropdown');
+  if (mobileBtn && mobileDropdown) {
+    mobileBtn.addEventListener('click', () => {
+      mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+  }
+</script>
+</body>
+</html>
