@@ -327,7 +327,7 @@
       cursor: pointer;
     }
 
-    /* ========== HERO SECTION ========== */
+    /* ========== HERO SECTION - UPGRADED ========== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -336,6 +336,16 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero-bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
     .hero-bg-image {
@@ -364,6 +374,19 @@
       padding: 0 20px;
       z-index: 2;
       position: relative;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-content h1 {
@@ -374,7 +397,19 @@
       background-clip: text;
       color: transparent;
       line-height: 1.2;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #B0B4B8;
+      margin-bottom: 15px;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #8A8F94;
+      margin-bottom: 40px;
     }
 
     .hero-content p {
@@ -493,6 +528,7 @@
       font-size: 1.1rem;
     }
 
+    /* Services Grid - Cards with animation delay */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -507,7 +543,15 @@
       transition: var(--transition);
       border: 1px solid rgba(0, 212, 255, 0.15);
       cursor: pointer;
+      animation: fadeInUp 0.6s ease-out backwards;
     }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
 
     .service-card:hover {
       transform: translateY(-10px);
@@ -533,6 +577,26 @@
       line-height: 1.5;
     }
 
+    /* CTA Banner - NEW */
+    .cta-banner {
+      background: linear-gradient(135deg, #0A0A0A, #0D0D0D);
+      border-radius: 60px;
+      padding: 50px 48px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      margin: 40px 0;
+    }
+    .cta-banner h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .cta-banner p {
+      color: #B0B4B8;
+      margin-bottom: 30px;
+    }
+
+    /* Why Choose Us */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -570,6 +634,7 @@
       color: #8A8F94;
     }
 
+    /* About + Stats */
     .about-stats {
       background: #0D0D0D;
       border-radius: 48px;
@@ -597,6 +662,14 @@
       line-height: 1.6;
     }
 
+    .team-note {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 20px;
+      font-style: italic;
+    }
+
     .stats {
       flex: 1;
       display: flex;
@@ -610,6 +683,12 @@
       padding: 24px;
       border-radius: 28px;
       border: 1px solid rgba(0, 212, 255, 0.2);
+      transition: var(--transition);
+    }
+
+    .stat-item:hover {
+      transform: scale(1.05);
+      border-color: var(--electric-blue);
     }
 
     .stat-number {
@@ -618,6 +697,7 @@
       color: var(--electric-blue);
     }
 
+    /* Testimonials */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -670,6 +750,7 @@
       margin-bottom: 24px;
     }
 
+    /* Contact Section - Enhanced with Map */
     .contact-flex {
       display: flex;
       flex-wrap: wrap;
@@ -762,13 +843,48 @@
       color: var(--electric-blue);
     }
 
-    .map-placeholder {
-      margin-top: 30px;
-      background: #0D0D0D;
-      border-radius: 28px;
-      padding: 20px;
-      text-align: center;
-      border: 1px solid rgba(0, 212, 255, 0.2);
+    /* Embedded Map */
+    .embedded-map {
+      margin-top: 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    .embedded-map iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+    }
+
+    /* WhatsApp Floating Button - NEW */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    .whatsapp-float i {
+      font-size: 2rem;
+      color: white;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
     footer {
@@ -894,6 +1010,16 @@
       .scroll-indicator {
         bottom: 20px;
       }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .whatsapp-float i {
+        font-size: 1.5rem;
+      }
     }
 
     @media (max-width: 580px) {
@@ -1012,17 +1138,19 @@
     <a href="quote.html" class="btn btn-primary">Get Quote</a>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero Section - Upgraded -->
   <section id="home" class="hero">
-    <img src="pic/powerOnly2.jpg" alt="Logistics Truck" class="hero-bg-image" onerror="this.style.display='none'">
+    <video class="hero-bg-video" autoplay muted loop playsinline>
+      <source src="pic/video.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Driven by Precision.<br>Powered by Profit.</h1>
-      <p>Maximize your earnings with elite dispatch, premium freight, and 24/7 support. Join owner operators who scale
-        with confidence.</p>
+      <div class="hero-subtitle">Reliable Dispatch Services Across the USA</div>
+      <div class="hero-description">Dedicated Dispatch for Owner Operators to Maximize Revenue & Minimize Hassle</div>
       <div class="hero-buttons">
-        <a href="quote.html" class="btn btn-primary btn-large"><i class="fas fa-truck-fast"></i> Get a Quote</a>
-        <a href="contact.html" class="btn-outline"><i class="fas fa-headset"></i> Contact Us</a>
+        <a href="quote.html" class="btn btn-primary btn-large"><i class="fas fa-truck-fast"></i> Start Dispatching Today</a>
+        <a href="contact.html" class="btn-outline btn-large"><i class="fas fa-headset"></i> Free Consultation</a>
       </div>
     </div>
 
@@ -1049,9 +1177,8 @@
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
-          <h3>🚛 Load Booking & Freight Matching</h3>
-          <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying
-            loads milte hain.</p>
+          <h3>📦 Load Booking & Freight Matching</h3>
+          <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-headset"></i></div>
@@ -1066,14 +1193,12 @@
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-dollar-sign"></i></div>
           <h3>💰 Rate Negotiation</h3>
-          <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure premium rates for every load.
-          </p>
+          <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure premium rates for every load.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-route"></i></div>
           <h3>📍 Route Planning & Tracking</h3>
-          <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route
-            optimization.</p>
+          <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-file-alt"></i></div>
@@ -1083,6 +1208,15 @@
       </div>
     </div>
   </section>
+
+  <!-- CTA Banner after Services - NEW -->
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Ready to Increase Your Revenue?</h2>
+      <p>Join hundreds of owner operators who trust us for their dispatch needs</p>
+      <a href="quote.html" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Get a Quote Now</a>
+    </div>
+  </div>
 
   <!-- Why Choose Us -->
   <section id="why">
@@ -1102,7 +1236,7 @@
         </div>
         <div class="why-item"><i class="fas fa-users"></i>
           <h4>Experienced Team</h4>
-          <p>Decades of logistics & carrier management expertise.</p>
+          <p>8+ years of logistics & carrier management expertise.</p>
         </div>
         <div class="why-item"><i class="fas fa-map-marked-alt"></i>
           <h4>Real-time Tracking</h4>
@@ -1118,11 +1252,11 @@
       <div class="about-stats">
         <div class="about-text">
           <h2>About Universal Trans Logistics</h2>
-          <p style="margin-bottom: 20px;">Founded by industry veterans, we blend cutting-edge technology with a
-            driver-first approach. Our mission: empower owner operators and fleets to achieve unrivaled profitability
-            through precision dispatching and dedicated support.</p>
-          <p>We don't just move freight — we move your business forward. Every load, every mile, every decision is
-            optimized for profit. Join a network that puts drivers at the center.</p>
+          <p style="margin-bottom: 20px;">Founded by industry veterans with over 8 years of experience, we blend cutting-edge technology with a driver-first approach. Our mission: empower owner operators and fleets to achieve unrivaled profitability through precision dispatching and dedicated support.</p>
+          <p>We don't just move freight — we move your business forward. Every load, every mile, every decision is optimized for profit. Join a network that puts drivers at the center.</p>
+          <div class="team-note">
+            <i class="fas fa-user-tie"></i> <strong>Founded by 8+ Year Industry Veteran</strong> — We understand the challenges you face because we've been there.
+          </div>
         </div>
         <div class="stats">
           <div class="stat-item">
@@ -1146,9 +1280,9 @@
   <div class="visual-break"
     style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed; padding: 120px 0; text-align: center; background-attachment: fixed; margin: 40px 0; border-top: 1px solid rgba(0,212,255,0.3); border-bottom: 1px solid rgba(0,212,255,0.3);">
     <div class="container">
-      <h2
-        style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #00D4FF); -webkit-background-clip: text; background-clip: text; color: transparent;">
-        We Don't Chase Loads.<br><span style="color: var(--electric-blue);">We Secure Profits.</span></h2>
+      <h2 style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #00D4FF); -webkit-background-clip: text; background-clip: text; color: transparent;">
+        We Don't Chase Loads.<br><span style="color: var(--electric-blue);">We Secure Profits.</span>
+      </h2>
     </div>
   </div>
 
@@ -1162,19 +1296,19 @@
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>UTL transformed my business! Revenue increased 35% in 3 months, dispatchers are pros.</p>
+            <p>"Best dispatch service I've ever worked with! Revenue increased 35% in 3 months."</p>
           </div>
           <div class="client-name">— Michael R., Owner Operator</div>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>Best dispatch service I've ever used. They find high-paying loads and handle everything 24/7.</p>
+            <p>"They find high-paying loads and handle everything 24/7. Truly professional."</p>
           </div>
           <div class="client-name">— Jessica T., Fleet Owner</div>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>Reliable, transparent, and truly profit-driven. Glad I switched to Universal Trans.</p>
+            <p>"Reliable, transparent, and profit-driven. Best decision I made for my business."</p>
           </div>
           <div class="client-name">— Derrick L., Independent Driver</div>
         </div>
@@ -1183,26 +1317,24 @@
   </section>
 
   <!-- CTA Section -->
-  <div class="container">
+  <div class="container" id="quote">
     <div class="cta-section">
       <h2>Ready to Maximize Your Profits?</h2>
-      <a href="quote.html" class="btn btn-primary btn-large"><i class="fas fa-arrow-right"></i> Join Universal Trans
-        Today</a>
+      <a href="quote.html" class="btn btn-primary btn-large"><i class="fas fa-arrow-right"></i> Book a Load Today</a>
     </div>
   </div>
 
-  <!-- Contact Section -->
+  <!-- Contact Section with Map -->
   <section id="contact">
     <div class="container">
       <div class="contact-flex">
         <div class="contact-form">
-          <h3>Get in Touch</h3>
+          <h3>Get a Free Quote</h3>
           <form id="leadForm">
             <div class="form-group"><input type="text" placeholder="Full Name" required id="name"></div>
             <div class="form-group"><input type="email" placeholder="Email Address" required id="email"></div>
             <div class="form-group"><input type="tel" placeholder="Phone Number" required id="phone"></div>
-            <div class="form-group"><textarea rows="4" placeholder="Tell us about your trucking needs..."
-                id="message"></textarea></div>
+            <div class="form-group"><textarea rows="4" placeholder="Tell us about your trucking needs..." id="message"></textarea></div>
             <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
             <p style="margin-top: 12px;" id="formFeedback"></p>
           </form>
@@ -1211,16 +1343,19 @@
           <h4>Quick Contact</h4>
           <div class="quick-contact">
             <a href="tel:+15876994068"><i class="fas fa-phone-alt"></i> +1 (587) 699-4068</a>
-            <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+            <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat (Click to Message)</a>
             <a href="mailto:rafaysmith.utl@gmail.com"><i class="fas fa-envelope"></i> rafaysmith.utl@gmail.com</a>
-            <a href="https://www.google.com/maps?q=33.6844,73.0479" target="_blank">
-              <i class="fas fa-map-marker-alt"></i> 2200 Logistics Way, Suite 400, Dallas, TX.
+            <a href="https://maps.google.com/?q=2200+Logistics+Way+Dallas+TX" target="_blank">
+              <i class="fas fa-map-marker-alt"></i> 2200 Logistics Way, Suite 400, Dallas, TX
             </a>
           </div>
-          <hr style="margin: 30px 0; border-color: #222;">
-          <div class="map-placeholder">
-            <i class="fas fa-map" style="font-size: 3rem; color: #00D4FF; margin-bottom: 15px; display: block;"></i>
-            <p><strong>24/7 Dispatch Hotline:</strong><br>+1 (587) 699-4068</p>
+          <hr style="margin: 20px 0; border-color: #222;">
+          <div class="embedded-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.63451248736!2d-96.9216614423828!3d32.82058655032314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b459c6d%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <hr style="margin: 20px 0; border-color: #222;">
+          <div class="quick-contact">
+            <a href="tel:+15876994068"><i class="fas fa-clock"></i> <strong>24/7 Dispatch Hotline:</strong> +1 (587) 699-4068</a>
           </div>
         </div>
       </div>
@@ -1268,6 +1403,11 @@
     </div>
   </footer>
 
+  <!-- WhatsApp Floating Button - NEW -->
+  <a href="https://wa.me/15876994068" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
     // Loader hide
     window.addEventListener('load', () => {
@@ -1287,7 +1427,7 @@
       else navbar.classList.remove('scrolled');
     });
 
-    // ========== CLICK-BASED DROPDOWN (FIXED) ==========
+    // ========== CLICK-BASED DROPDOWN ==========
     const dropBtn = document.getElementById('dropBtn');
     const dropdown = document.getElementById('servicesDropdown');
 
@@ -1297,14 +1437,12 @@
         dropdown.classList.toggle('show');
       });
 
-      // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
         if (!dropdown.contains(e.target)) {
           dropdown.classList.remove('show');
         }
       });
 
-      // Close dropdown when clicking on any dropdown link
       const dropdownLinks = document.querySelectorAll('.dropdown-content a');
       dropdownLinks.forEach(link => {
         link.addEventListener('click', () => {
