@@ -29,7 +29,7 @@
       overflow-x: hidden;
     }
 
-    /* ========== LOADING ANIMATION (SAME AS HOME PAGE) ========== */
+    /* ========== LOADING ANIMATION ========== */
     .loader-wrapper {
       position: fixed;
       top: 0;
@@ -241,7 +241,6 @@
     }
 
     /* ========== SERVICES PAGE STYLES ========== */
-    /* Hero Section - Full Screen with Video */
     .services-hero {
       min-height: 100vh;
       display: flex;
@@ -302,7 +301,6 @@
       margin: 0 auto;
       font-size: 1.3rem;
     }
-    /* Scroll Arrow */
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
@@ -323,7 +321,6 @@
       padding: 0 32px;
     }
 
-    /* Service Section - Each service as separate section */
     .service-section {
       padding: 80px 0;
       border-bottom: 1px solid rgba(0, 212, 255, 0.1);
@@ -417,7 +414,6 @@
       font-size: 1.1rem;
     }
 
-    /* ========== FOOTER ========== */
     footer {
       background: #050505;
       padding: 60px 0 30px;
@@ -466,7 +462,6 @@
       font-size: 0.9rem;
     }
 
-    /* Responsive */
     @media (max-width: 968px) {
       .nav-links { display: none; }
       .mobile-menu { display: block; }
@@ -490,7 +485,6 @@
       .service-image img { height: 200px; }
     }
 
-    /* Mobile Dropdown - Fixed */
     #mobileDropdown {
       display: none;
       position: fixed;
@@ -527,7 +521,7 @@
 </head>
 <body>
 
-<!-- ========== LOADING ANIMATION (SAME AS HOME PAGE) ========== -->
+<!-- ========== LOADING ANIMATION ========== -->
 <div class="loader-wrapper" id="loaderWrapper">
   <div class="loader-truck"><i class="fas fa-truck-moving"></i></div>
   <div class="loader-text">UNIVERSAL TRANS LOGISTICS</div>
@@ -571,17 +565,16 @@
   </div>
 </nav>
 
-<!-- Mobile Dropdown - Simplified and Fixed -->
 <div id="mobileDropdown">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
-  <a href="about.html">About</a>
   <a href="why-us.html">Why Us</a>
+  <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
   <a href="quote.html" class="btn btn-primary">Get Quote</a>
 </div>
 
-<!-- ========== SERVICES PAGE HERO - FULL SCREEN WITH VIDEO ========== -->
+<!-- ========== SERVICES PAGE HERO ========== -->
 <section class="services-hero">
   <video class="hero-bg-video" autoplay muted loop playsinline>
     <source src="pic/services.mp4" type="video/mp4">
@@ -605,7 +598,7 @@
       <div class="service-text">
         <div class="service-icon-large"><i class="fas fa-calendar-check"></i></div>
         <h2>🚛 Load Booking & Freight Matching</h2>
-        <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain. Our advanced algorithm analyzes thousands of available loads daily to match you with the most profitable freight based on your location, equipment type, and preferred lanes.</p>
+        <p>Find and assign the best paying loads to your trucks. Our advanced algorithm analyzes thousands of available loads daily to match you with the most profitable freight based on your location, equipment type, and preferred lanes.</p>
         <h3>What We Offer:</h3>
         <ul class="service-features">
           <li><i class="fas fa-check-circle"></i> Real-time load board access</li>
@@ -628,7 +621,7 @@
       <div class="service-text">
         <div class="service-icon-large"><i class="fas fa-headset"></i></div>
         <h2>📞 24/7 Driver Support</h2>
-        <p>Round-the-clock assistance to drivers, solving issues, and offering guidance on the road. Never drive alone — our dispatch team is always one call away, whether it's 2 PM or 2 AM.</p>
+        <p>Round-the-clock assistance to drivers, solving issues, and offering guidance on the road. Never drive alone — our dispatch team is always one call away, whether it is 2 PM or 2 AM.</p>
         <h3>What We Offer:</h3>
         <ul class="service-features">
           <li><i class="fas fa-check-circle"></i> Emergency roadside assistance coordination</li>
@@ -674,7 +667,7 @@
       <div class="service-text">
         <div class="service-icon-large"><i class="fas fa-dollar-sign"></i></div>
         <h2>💰 Rate Negotiation</h2>
-        <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure premium rates for every load. Our team has 8+ years of experience and relationships with top brokers across the country.</p>
+        <p>Secure the highest possible rates from brokers. Expert negotiators ensure premium rates for every load. Our team has 8+ years of experience and relationships with top brokers across the country.</p>
         <h3>What We Offer:</h3>
         <ul class="service-features">
           <li><i class="fas fa-check-circle"></i> Market rate analysis per lane</li>
@@ -697,7 +690,7 @@
       <div class="service-text">
         <div class="service-icon-large"><i class="fas fa-route"></i></div>
         <h2>📍 Route Planning & Tracking</h2>
-        <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization to save fuel and time. We help you avoid traffic, construction, and low-clearance bridges.</p>
+        <p>Plan efficient routes and provide live tracking support. Real-time GPS tracking and optimal route optimization to save fuel and time. We help you avoid traffic, construction, and low-clearance bridges.</p>
         <h3>What We Offer:</h3>
         <ul class="service-features">
           <li><i class="fas fa-check-circle"></i> Fuel-efficient route algorithms</li>
@@ -720,7 +713,7 @@
       <div class="service-text">
         <div class="service-icon-large"><i class="fas fa-file-alt"></i></div>
         <h2>📄 Paperwork & Broker Coordination</h2>
-        <p>All documents handle karna aur broker se communication manage karna. Complete back-office support including rate confirmations, invoices, proof of delivery, and collections.</p>
+        <p>Handle all documents and manage broker communication. Complete back-office support including rate confirmations, invoices, proof of delivery, and collections.</p>
         <h3>What We Offer:</h3>
         <ul class="service-features">
           <li><i class="fas fa-check-circle"></i> Rate confirmation management</li>
@@ -787,7 +780,7 @@
 </footer>
 
 <script>
-  // Loader hide (same as home page)
+  // Loader hide
   window.addEventListener('load', () => {
     const loader = document.getElementById('loaderWrapper');
     if (loader) {
@@ -831,7 +824,6 @@
       }
     });
     
-    // Close mobile dropdown when clicking on any link
     mobileDropdown.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileDropdown.style.display = 'none';
@@ -839,7 +831,6 @@
     });
   }
 
-  // Close mobile dropdown on window resize if screen becomes desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 968 && mobileDropdown) {
       mobileDropdown.style.display = 'none';
