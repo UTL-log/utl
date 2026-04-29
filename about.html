@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universal Trans Logistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Universal Trans Logistics | About Us</title>
   <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
-    /* ========== NAVBAR & FOOTER CSS - HOME PAGE JESA ========== */
+    /* ========== GLOBAL RESET & VARIABLES ========== */
     * {
       margin: 0;
       padding: 0;
@@ -16,16 +16,65 @@
     :root {
       --pure-black: #000000;
       --deep-black: #0A0A0A;
+      --navy-blue: #0A1F44;
+      --navy-light: #0F2A5E;
       --metallic-silver: #E8ECEF;
       --electric-blue: #00D4FF;
       --electric-blue-glow: rgba(0, 212, 255, 0.5);
-      --transition: all 0.3s ease;
+      --transition: all 0.4s cubic-bezier(0.2, 0.95, 0.4, 1.05);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Poppins', 'Segoe UI', sans-serif;
       background: var(--pure-black);
       color: var(--metallic-silver);
+      overflow-x: hidden;
+    }
+
+    /* ========== LOADING ANIMATION ========== */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader-truck {
+      font-size: 4.5rem;
+      color: var(--electric-blue);
+      animation: truckDrive 1.2s infinite alternate ease-in-out;
+      filter: drop-shadow(0 0 12px var(--electric-blue));
+    }
+    @keyframes truckDrive {
+      0% { transform: translateX(-30px); opacity: 0.6; }
+      100% { transform: translateX(30px); opacity: 1; }
+    }
+    .loader-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulseGlow 1.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; text-shadow: 0 0 8px var(--electric-blue);}
     }
 
     /* ========== NAVBAR ========== */
@@ -153,6 +202,7 @@
       border-radius: 16px;
       border: 1px solid rgba(0, 212, 255, 0.3);
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
     .dropdown-content a {
       color: var(--metallic-silver);
@@ -197,33 +247,449 @@
       cursor: pointer;
     }
 
-    /* Page Content Styling */
-    .page-content {
-      min-height: 60vh;
-      padding: 120px 0 60px;
+    /* ========== ABOUT PAGE STYLES ========== */
+    /* Hero Section - FULL SCREEN with Video */
+    .page-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--pure-black);
     }
-    .page-content h1 {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+    .hero-bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+      z-index: 1;
+    }
+    .page-hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+      position: relative;
+      animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page-hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, var(--electric-blue));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       margin-bottom: 20px;
     }
-    .page-content p {
+    .page-hero p {
       color: #B0B4B8;
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
-      line-height: 1.8;
+      font-size: 1.2rem;
+      line-height: 1.6;
     }
+
+    /* Scroll Down Arrow */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--electric-blue);
+      gap: 5px;
+    }
+    .scroll-indicator .mouse {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--electric-blue);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    .scroll-indicator .mouse .wheel {
+      width: 4px;
+      height: 10px;
+      background: var(--electric-blue);
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      animation: scrollWheel 1.5s infinite;
+    }
+    .scroll-indicator .arrow-down {
+      font-size: 1.2rem;
+      margin-top: 5px;
+      animation: arrowMove 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    @keyframes scrollWheel {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+    }
+    @keyframes arrowMove {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
-    /* ========== FOOTER (HOME PAGE JESA) ========== */
+    section {
+      padding: 100px 0;
+    }
+
+    /* Alternating Background Colors */
+    .section-bg-blue {
+      background: linear-gradient(135deg, var(--navy-blue), #061530);
+    }
+    .section-bg-black {
+      background: var(--pure-black);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #E8ECEF, var(--electric-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .section-header p {
+      color: #8A8F94;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    /* About Company - Floating Card Effect */
+    .about-card {
+      background: rgba(13, 13, 13, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 48px;
+      padding: 60px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      transition: var(--transition);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .about-card:hover {
+      border-color: var(--electric-blue);
+      box-shadow: 0 25px 45px -15px rgba(0, 212, 255, 0.2);
+    }
+    .about-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1.5;
+    }
+    .about-text h3 {
+      font-size: 2rem;
+      color: var(--electric-blue);
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      color: #B0B4B8;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .about-icon {
+      flex: 1;
+      text-align: center;
+    }
+    .about-icon i {
+      font-size: 8rem;
+      color: var(--electric-blue);
+      opacity: 0.8;
+      filter: drop-shadow(0 0 15px var(--electric-blue-glow));
+    }
+
+    /* Vision & Mission - Floating Glass Cards */
+    .vision-mission {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .floating-card {
+      flex: 1;
+      background: rgba(13, 13, 13, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 50px 40px;
+      border-radius: 32px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      transition: var(--transition);
+      animation: floatCard 5s ease-in-out infinite;
+    }
+    .floating-card:nth-child(1) { animation-delay: 0s; }
+    .floating-card:nth-child(2) { animation-delay: 1s; }
+    @keyframes floatCard {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+    .floating-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--electric-blue);
+      box-shadow: 0 30px 50px -20px rgba(0, 212, 255, 0.3);
+      background: rgba(13, 13, 13, 0.8);
+    }
+    .floating-card i {
+      font-size: 3.5rem;
+      color: var(--electric-blue);
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 10px var(--electric-blue-glow));
+    }
+    .floating-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--electric-blue);
+    }
+    .floating-card p {
+      color: #B0B4B8;
+      line-height: 1.7;
+    }
+
+    /* Cinematic Visual Break - Same as Home Page */
+    .visual-break {
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed;
+      padding: 120px 0;
+      text-align: center;
+      background-attachment: fixed;
+      margin: 0;
+      border-top: 1px solid rgba(0, 212, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    .visual-break h2 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .visual-break h2 span {
+      color: var(--electric-blue);
+      display: inline-block;
+    }
+
+    /* Leadership Team - 3D Hover Cards */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+    .team-card {
+      background: rgba(13, 13, 13, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    .team-card:hover::before {
+      left: 100%;
+    }
+    .team-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--electric-blue);
+      box-shadow: 0 30px 40px -20px rgba(0, 212, 255, 0.3);
+    }
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, var(--navy-blue), var(--electric-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--electric-blue);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+      transition: var(--transition);
+    }
+    .team-card:hover .profile-img {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    }
+    .profile-img i {
+      font-size: 4rem;
+      color: white;
+    }
+    .team-card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .team-role {
+      color: var(--electric-blue);
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+    .team-description {
+      color: #B0B4B8;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .team-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--metallic-silver);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .team-email:hover {
+      background: rgba(0, 212, 255, 0.2);
+      color: var(--electric-blue);
+      transform: translateX(5px);
+    }
+
+    /* Core Values - Floating Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+    .value-card {
+      background: rgba(13, 13, 13, 0.5);
+      backdrop-filter: blur(8px);
+      padding: 40px 25px;
+      border-radius: 28px;
+      text-align: center;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition);
+      animation: valueFloat 4s ease-in-out infinite;
+    }
+    .value-card:nth-child(1) { animation-delay: 0s; }
+    .value-card:nth-child(2) { animation-delay: 0.5s; }
+    .value-card:nth-child(3) { animation-delay: 1s; }
+    .value-card:nth-child(4) { animation-delay: 1.5s; }
+    @keyframes valueFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    .value-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: var(--electric-blue);
+      background: rgba(13, 13, 13, 0.8);
+      box-shadow: 0 20px 35px -15px rgba(0, 212, 255, 0.2);
+    }
+    .value-card i {
+      font-size: 3rem;
+      color: var(--electric-blue);
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px var(--electric-blue-glow));
+    }
+    .value-card h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .value-card p {
+      color: #8A8F94;
+    }
+
+    /* CTA Section */
+    .about-cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(5, 5, 16, 0.9));
+      backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 80px 48px;
+      margin: 40px 0;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      transition: var(--transition);
+    }
+    .about-cta:hover {
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.1);
+    }
+    .about-cta h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+    .about-cta p {
+      color: #B0B4B8;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-large {
+      padding: 14px 42px;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
     footer {
       background: #050505;
       padding: 60px 0 30px;
@@ -246,15 +712,22 @@
       gap: 60px;
       flex-wrap: wrap;
     }
+    .footer-links h4 {
+      color: var(--electric-blue);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
     .footer-links a {
       display: block;
       color: var(--metallic-silver);
       text-decoration: none;
       margin-bottom: 12px;
       transition: var(--transition);
+      font-size: 0.9rem;
     }
     .footer-links a:hover {
       color: var(--electric-blue);
+      transform: translateX(5px);
     }
     .social-icons a {
       color: var(--metallic-silver);
@@ -264,6 +737,7 @@
     }
     .social-icons a:hover {
       color: var(--electric-blue);
+      transform: translateY(-3px);
     }
     .copyright {
       text-align: center;
@@ -273,29 +747,37 @@
       font-size: 0.9rem;
     }
 
-    /* Responsive */
     @media (max-width: 968px) {
-      .nav-links {
-        display: none;
-      }
-      .mobile-menu {
-        display: block;
-      }
-      .container {
-        padding: 0 20px;
-      }
-      .universal-trans {
-        font-size: 1.1rem;
-      }
-      .monogram-container img {
-        height: 38px;
-      }
-      .vertical-divider {
-        height: 40px;
-      }
-      .page-content h1 {
-        font-size: 2rem;
-      }
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .section-header h2 { font-size: 2rem; }
+      .intro-card { padding: 30px 20px; }
+      .why-cta { padding: 50px 24px; }
+      .why-cta h2 { font-size: 1.8rem; }
+      .dual-section { flex-direction: column; }
+      .monogram-container img { height: 38px; }
+      .universal-trans { font-size: 1.1rem; }
+      .vertical-divider { height: 40px; }
+      .rates-grid { grid-template-columns: 1fr; gap: 16px; }
+      .rate-card { padding: 16px 20px; }
+      .scroll-indicator { bottom: 15px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .social-icons { justify-content: center; display: flex; }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper { gap: 8px; flex-wrap: wrap; }
+      .universal-trans { font-size: 0.85rem; }
+      .vertical-divider { height: 30px; }
+      .monogram-container img { height: 28px; }
+      .rate-icon { width: 48px; height: 48px; }
+      .rate-icon i { font-size: 1.4rem; }
+      .rate-info h3 { font-size: 1rem; }
+      .rate-price { font-size: 0.85rem; }
     }
 
     #mobileDropdown {
@@ -317,9 +799,7 @@
       font-family: Poppins;
       font-size: 1.1rem;
     }
-    #mobileDropdown a:hover {
-      color: #00D4FF;
-    }
+    #mobileDropdown a:hover { color: #00D4FF; }
     #mobileDropdown .btn-primary {
       text-align: center;
       width: 100%;
@@ -330,13 +810,17 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR (HOME PAGE JESA) ========== -->
+<!-- Loading Animation -->
+<div class="loader-wrapper" id="loaderWrapper">
+  <div class="loader-truck"><i class="fas fa-truck-moving"></i></div>
+  <div class="loader-text">UNIVERSAL TRANS LOGISTICS</div>
+</div>
+
+<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <div class="logo-wrapper">
-      <div class="monogram-container">
-        <img src="pic/logoog2.png" alt="UTL Logo">
-      </div>
+      <div class="monogram-container"><img src="pic/logoog2.png" alt="UTL Logo"></div>
       <div class="vertical-divider"></div>
       <div class="brand-text-side">
         <div class="universal-trans">UNIVERSAL TRANS</div>
@@ -361,8 +845,8 @@
           <a href="services.html#paperwork">Paperwork & Broker Coordination</a>
         </div>
       </div>
-      <a href="why-us.html">Why Us</a>
       <a href="about.html">About</a>
+      <a href="why-us.html">Why Us</a>
       <a href="contact.html">Contact</a>
       <a href="quote.html" class="btn btn-primary"><i class="fas fa-truck-fast"></i> Get Quote</a>
     </div>
@@ -373,21 +857,156 @@
 <div id="mobileDropdown">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
-  <a href="why-us.html">Why Us</a>
   <a href="about.html">About</a>
+  <a href="why-us.html">Why Us</a>
   <a href="contact.html">Contact</a>
   <a href="quote.html" class="btn btn-primary">Get Quote</a>
 </div>
 
-<!-- ========== PAGE CONTENT (YAHAN AAP APNA CONTENT DALENGE) ========== -->
-<div class="page-content">
+<!-- Hero Section - FULL SCREEN with Video and Scroll Arrow -->
+<section class="page-hero">
+  <video class="hero-bg-video" autoplay muted loop playsinline>
+    <source src="pic/about.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1>Driven by Precision.<br>Powered by Profit.</h1>
+    <p>Universal Trans Logistics is a results-driven dispatch service provider dedicated to helping owner operators and fleets maximize revenue, minimize downtime, and operate with complete confidence.</p>
+  </div>
+  
+  <!-- Animated Scroll Down Arrow -->
+  <div class="scroll-indicator">
+    <a href="#about-company">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow-down">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- About Company - Floating Card (BLUE BACKGROUND) -->
+<section id="about-company" class="section-bg-blue">
   <div class="container">
-    <h1>Page Title</h1>
-    <p>Yahan aap apna content daal sakte hain. Ye sirf placeholder hai. Aapko jo bhi add karna hai yahan add karein.</p>
+    <div class="about-card">
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>About Universal Trans Logistics</h3>
+          <p>Universal Trans Logistics is a premium dispatch service provider specializing in load management, freight matching, and carrier support. We connect owner operators and fleets with the highest paying loads while handling all paperwork, negotiation, and broker coordination.</p>
+          <p>Our expert team works 24/7 to ensure you stay on the road with maximum profitability and minimum hassle. From rate negotiation to route optimization and detention claims, we handle every detail so you can focus on driving.</p>
+          <p>We don't just move freight — we move your business forward with precision, transparency, and relentless dedication to your success.</p>
+        </div>
+        <div class="about-icon">
+          <i class="fas fa-truck-ramp-box"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision & Mission - Floating Glass Cards (BLACK BACKGROUND) -->
+<section class="section-bg-black">
+  <div class="container">
+    <div class="vision-mission">
+      <div class="floating-card">
+        <i class="fas fa-eye"></i>
+        <h3>Our Vision</h3>
+        <p>To become a leading logistics and dispatch company by building long-term partnerships with carriers, leveraging smart strategies and cutting-edge technology. We envision a future where every owner operator has access to premium freight, transparent communication, and consistent growth opportunities.</p>
+      </div>
+      <div class="floating-card">
+        <i class="fas fa-bullseye"></i>
+        <h3>Our Mission</h3>
+        <p>To deliver reliable, transparent, and efficient dispatch services that maximize profits for our clients. We are committed to providing 24/7 support, aggressive rate negotiation, and seamless operations so our drivers can focus on what they do best — driving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cinematic Visual Break - Same as Home Page -->
+<div class="visual-break">
+  <div class="container">
+    <h2>We Don't Chase Loads.<br><span>We Secure Profits.</span></h2>
   </div>
 </div>
 
-<!-- ========== FOOTER (HOME PAGE JESA) ========== -->
+<!-- Leadership Team Section (BLUE BACKGROUND) -->
+<section class="section-bg-blue">
+  <div class="container">
+    <div class="section-header">
+      <h2>Leadership Team</h2>
+      <p>Meet the experts behind Universal Trans Logistics</p>
+    </div>
+    <div class="team-grid">
+      <!-- CEO Card -->
+      <div class="team-card">
+        <div class="profile-img">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3>Rafay Smith</h3>
+        <div class="team-role">CEO & Founder</div>
+        <p class="team-description">A visionary leader with expertise in dispatch operations and logistics strategy. Focused on helping carriers grow, increase profits, and maintain smooth operations through smart planning and strong industry knowledge.</p>
+        <a href="mailto:rafaysmith.utl@gmail.com" class="team-email"><i class="fas fa-envelope"></i> rafaysmith.utl@gmail.com</a>
+      </div>
+      <!-- Manager Card -->
+      <div class="team-card">
+        <div class="profile-img">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <h3>Zora Smith</h3>
+        <div class="team-role">Operations Manager</div>
+        <p class="team-description">Responsible for daily operations, client coordination, and performance management. Ensures efficient workflow, strong communication, and high-quality service delivery for all our clients.</p>
+        <a href="mailto:zorasmith.utl@gmail.com" class="team-email"><i class="fas fa-envelope"></i> zorasmith.utl@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Values Section (BLACK BACKGROUND) -->
+<section class="section-bg-black">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Core Values</h2>
+      <p>What drives us every day</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <i class="fas fa-shield-alt"></i>
+        <h4>Reliability</h4>
+        <p>We deliver on our promises, every time. Consistent support you can count on.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-glasses"></i>
+        <h4>Transparency</h4>
+        <p>No hidden fees, no surprises. Complete visibility into every load and rate.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-rocket"></i>
+        <h4>Efficiency</h4>
+        <p>Optimized routes, smart matching, and fast claim processing.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-heart"></i>
+        <h4>Customer Focus</h4>
+        <p>Your success is our success. We put drivers first in everything we do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section (BLUE BACKGROUND) -->
+<section class="section-bg-blue">
+  <div class="container">
+    <div class="about-cta">
+      <h2>Ready to Partner With Us?</h2>
+      <p>Join hundreds of owner operators who trust Universal Trans Logistics for their dispatch needs.</p>
+      <a href="contact.html" class="btn btn-primary btn-large"><i class="fas fa-handshake"></i> Get Started Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -397,19 +1016,21 @@
       </div>
       <div class="footer-links">
         <div>
-          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Quick Links</h4>
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="why-us.html">Why Us</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+          <h4>Quick Links</h4>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="services.html"><i class="fas fa-truck"></i> Services</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          <a href="why-us.html"><i class="fas fa-star"></i> Why Us</a>
+          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="quote.html"><i class="fas fa-file-invoice"></i> Get Quote</a>
         </div>
         <div>
-          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
-          <a href="services.html">Load Booking</a>
-          <a href="services.html">Rate Negotiation</a>
-          <a href="services.html">Route Planning</a>
-          <a href="services.html">Broker Coordination</a>
+          <h4>Services</h4>
+          <a href="services.html"><i class="fas fa-calendar-check"></i> Load Booking</a>
+          <a href="services.html"><i class="fas fa-dollar-sign"></i> Rate Negotiation</a>
+          <a href="services.html"><i class="fas fa-route"></i> Route Planning</a>
+          <a href="services.html"><i class="fas fa-file-alt"></i> Broker Coordination</a>
+          <a href="services.html"><i class="fas fa-headset"></i> 24/7 Support</a>
         </div>
       </div>
       <div>
@@ -429,6 +1050,17 @@
 </footer>
 
 <script>
+  // Loader hide
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loaderWrapper');
+    if (loader) {
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1000);
+    }
+  });
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -453,8 +1085,35 @@
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileDropdown = document.getElementById('mobileDropdown');
   if (mobileBtn && mobileDropdown) {
-    mobileBtn.addEventListener('click', () => {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+    mobileDropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDropdown.style.display = 'none';
+      });
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 968 && mobileDropdown) {
+      mobileDropdown.style.display = 'none';
+    }
+  });
+
+  // Smooth scroll for scroll arrow
+  const scrollArrowLink = document.querySelector('.scroll-indicator a');
+  if (scrollArrowLink) {
+    scrollArrowLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = scrollArrowLink.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
   }
 </script>
