@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Universal Trans Logistics</title>
+  <title>Universal Trans Logistics | Driven by Precision. Powered by Profit.</title>
   <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
     /* ========== GLOBAL RESET & VARIABLES ========== */
@@ -409,7 +409,7 @@
       flex-wrap: wrap;
     }
 
-    /* Scroll Down Arrow */
+    /* Scroll Down Arrow - Mouse Wheel Style */
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
@@ -419,17 +419,50 @@
       cursor: pointer;
       animation: bounce 2s infinite;
     }
-
+    .scroll-indicator a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--electric-blue);
+      gap: 5px;
+    }
+    .scroll-indicator .mouse {
+      width: 30px;
+      height: 50px;
+      border: 2px solid var(--electric-blue);
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    .scroll-indicator .mouse .wheel {
+      width: 4px;
+      height: 10px;
+      background: var(--electric-blue);
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      animation: scrollWheel 1.5s infinite;
+    }
+    .scroll-indicator .arrow-down {
+      font-size: 1.2rem;
+      margin-top: 5px;
+      animation: arrowMove 1.5s infinite;
+    }
     @keyframes bounce {
-
-      0%,
-      100% {
-        transform: translateX(-50%) translateY(0);
-      }
-
-      50% {
-        transform: translateX(-50%) translateY(10px);
-      }
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+    @keyframes scrollWheel {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+    }
+    @keyframes arrowMove {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(8px); opacity: 1; }
     }
 
     /* ========== MAIN SECTIONS ========== */
@@ -829,7 +862,6 @@
       border-top: 1px solid rgba(0, 212, 255, 0.2);
       margin-top: 60px;
     }
-
     .footer-grid {
       display: flex;
       justify-content: space-between;
@@ -837,47 +869,106 @@
       gap: 40px;
       margin-bottom: 40px;
     }
-
     .footer-logo h3 {
       font-size: 1.3rem;
       color: var(--electric-blue);
     }
-
     .footer-links {
       display: flex;
       gap: 60px;
       flex-wrap: wrap;
     }
-
+    .footer-links h4 {
+      color: var(--electric-blue);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
     .footer-links a {
       display: block;
       color: var(--metallic-silver);
       text-decoration: none;
       margin-bottom: 12px;
       transition: var(--transition);
+      font-size: 0.9rem;
     }
-
     .footer-links a:hover {
       color: var(--electric-blue);
+      transform: translateX(5px);
     }
-
     .social-icons a {
       color: var(--metallic-silver);
       font-size: 1.5rem;
       margin-right: 20px;
       transition: var(--transition);
     }
-
     .social-icons a:hover {
       color: var(--electric-blue);
+      transform: translateY(-3px);
     }
-
     .copyright {
       text-align: center;
       padding-top: 30px;
       border-top: 1px solid #1a1a1a;
       color: #666;
       font-size: 0.9rem;
+    }
+
+    @media (max-width: 968px) {
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .section-header h2 { font-size: 2rem; }
+      .intro-card { padding: 30px 20px; }
+      .why-cta { padding: 50px 24px; }
+      .why-cta h2 { font-size: 1.8rem; }
+      .dual-section { flex-direction: column; }
+      .monogram-container img { height: 38px; }
+      .universal-trans { font-size: 1.1rem; }
+      .vertical-divider { height: 40px; }
+      .rates-grid { grid-template-columns: 1fr; gap: 16px; }
+      .rate-card { padding: 16px 20px; }
+      .scroll-indicator { bottom: 15px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .social-icons { justify-content: center; display: flex; }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper { gap: 8px; flex-wrap: wrap; }
+      .universal-trans { font-size: 0.85rem; }
+      .vertical-divider { height: 30px; }
+      .monogram-container img { height: 28px; }
+      .rate-icon { width: 48px; height: 48px; }
+      .rate-icon i { font-size: 1.4rem; }
+      .rate-info h3 { font-size: 1rem; }
+      .rate-price { font-size: 0.85rem; }
+    }
+
+    #mobileDropdown {
+      display: none;
+      position: fixed;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      background: #000000;
+      z-index: 999;
+      border-bottom: 1px solid #00D4FF;
+      padding: 20px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #mobileDropdown a {
+      color: #E8ECEF;
+      text-decoration: none;
+      font-family: Poppins;
+      font-size: 1.1rem;
+    }
+    #mobileDropdown a:hover { color: #00D4FF; }
+    #mobileDropdown .btn-primary {
+      text-align: center;
+      width: 100%;
     }
 
     /* Responsive */
@@ -999,7 +1090,7 @@
     <a href="quote.html" class="btn btn-primary">Get Quote</a>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Mouse Wheel Arrow -->
   <section id="home" class="hero">
     <video class="hero-bg-video" autoplay muted loop playsinline>
       <source src="pic/hero-video.mp4" type="video/mp4">
@@ -1014,9 +1105,16 @@
         <a href="contact.html" class="btn-outline btn-large"><i class="fas fa-headset"></i> Free Consultation</a>
       </div>
     </div>
+    
+    <!-- Animated Mouse Wheel Scroll Arrow -->
     <div class="scroll-indicator">
       <a href="#services">
-        <i class="fas fa-chevron-down" style="color: var(--electric-blue); font-size: 2rem;"></i>
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <div class="arrow-down">
+          <i class="fas fa-chevron-down"></i>
+        </div>
       </a>
     </div>
   </section>
@@ -1178,45 +1276,47 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-logo">
-          <h3>UNIVERSAL TRANS</h3>
-          <p style="color: #666; margin-top: 10px;">Driven by Precision.<br>Powered by Profit.</p>
-        </div>
-        <div class="footer-links">
-          <div>
-            <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Quick Links</h4>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="why-us.html">Why Us</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-          </div>
-          <div>
-            <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
-            <a href="services.html">Load Booking</a>
-            <a href="services.html">Rate Negotiation</a>
-            <a href="services.html">Route Planning</a>
-            <a href="services.html">Broker Coordination</a>
-          </div>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <h3>UNIVERSAL TRANS</h3>
+        <p style="color: #666; margin-top: 10px;">Driven by Precision.<br>Powered by Profit.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Quick Links</h4>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="services.html"><i class="fas fa-truck"></i> Services</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          <a href="why-us.html"><i class="fas fa-star"></i> Why Us</a>
+          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="quote.html"><i class="fas fa-file-invoice"></i> Get Quote</a>
         </div>
         <div>
-          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Follow Us</h4>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
+          <h4>Services</h4>
+          <a href="services.html"><i class="fas fa-calendar-check"></i> Load Booking</a>
+          <a href="services.html"><i class="fas fa-dollar-sign"></i> Rate Negotiation</a>
+          <a href="services.html"><i class="fas fa-route"></i> Route Planning</a>
+          <a href="services.html"><i class="fas fa-file-alt"></i> Broker Coordination</a>
+          <a href="services.html"><i class="fas fa-headset"></i> 24/7 Support</a>
         </div>
       </div>
-      <div class="copyright">
-        <p>&copy; 2025 Universal Trans Logistics LLC. All Rights Reserved. Premium Freight Solutions.</p>
+      <div>
+        <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="copyright">
+      <p>&copy; 2025 Universal Trans Logistics LLC. All Rights Reserved. Premium Freight Solutions.</p>
+    </div>
+  </div>
+</footer>
 
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/15876994068" target="_blank" class="whatsapp-float">
@@ -1276,15 +1376,15 @@
       }
     });
 
-    // Scroll arrow
+    // Scroll arrow with smooth scroll
     const scrollArrow = document.querySelector('.scroll-indicator a');
     if (scrollArrow) {
       scrollArrow.addEventListener('click', function (e) {
+        e.preventDefault();
         const targetId = this.getAttribute('href');
         if (targetId && targetId !== '#') {
           const target = document.querySelector(targetId);
           if (target) {
-            e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
