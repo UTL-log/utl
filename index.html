@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Universal Trans Logistics | Driven by Precision. Powered by Profit.</title>
+  <title>Universal Trans Logistics</title>
   <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
     /* ========== GLOBAL RESET & VARIABLES ========== */
@@ -327,7 +327,7 @@
       cursor: pointer;
     }
 
-    /* ========== HERO SECTION - UPGRADED ========== */
+    /* ========== HERO SECTION ========== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -339,16 +339,6 @@
     }
 
     .hero-bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero-bg-image {
       position: absolute;
       top: 0;
       left: 0;
@@ -412,12 +402,6 @@
       margin-bottom: 40px;
     }
 
-    .hero-content p {
-      font-size: 1.3rem;
-      color: #B0B4B8;
-      margin-bottom: 40px;
-    }
-
     .hero-buttons {
       display: flex;
       gap: 20px;
@@ -436,36 +420,6 @@
       animation: bounce 2s infinite;
     }
 
-    .scroll-indicator a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: var(--electric-blue);
-      gap: 8px;
-    }
-
-    .scroll-indicator .mouse {
-      width: 30px;
-      height: 50px;
-      border: 2px solid var(--electric-blue);
-      border-radius: 20px;
-      position: relative;
-      box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-    }
-
-    .scroll-indicator .mouse .wheel {
-      width: 4px;
-      height: 10px;
-      background: var(--electric-blue);
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
-      animation: scrollWheel 1.5s infinite;
-    }
-
     @keyframes bounce {
 
       0%,
@@ -475,23 +429,6 @@
 
       50% {
         transform: translateX(-50%) translateY(10px);
-      }
-    }
-
-    @keyframes scrollWheel {
-      0% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      80% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(15px);
-      }
-
-      100% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(15px);
       }
     }
 
@@ -528,7 +465,7 @@
       font-size: 1.1rem;
     }
 
-    /* Services Grid - Cards with animation delay */
+    /* Services Grid */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -577,7 +514,7 @@
       line-height: 1.5;
     }
 
-    /* CTA Banner - NEW */
+    /* CTA Banner */
     .cta-banner {
       background: linear-gradient(135deg, #0A0A0A, #0D0D0D);
       border-radius: 60px;
@@ -750,7 +687,7 @@
       margin-bottom: 24px;
     }
 
-    /* Contact Section - Enhanced with Map */
+    /* Contact Section */
     .contact-flex {
       display: flex;
       flex-wrap: wrap;
@@ -843,7 +780,6 @@
       color: var(--electric-blue);
     }
 
-    /* Embedded Map */
     .embedded-map {
       margin-top: 20px;
       border-radius: 20px;
@@ -856,7 +792,7 @@
       border: none;
     }
 
-    /* WhatsApp Floating Button - NEW */
+    /* WhatsApp Floating Button */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -871,7 +807,7 @@
       justify-content: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: var(--transition);
-      animation: pulse 2s infinite;
+      animation: pulseWa 2s infinite;
       text-decoration: none;
     }
     .whatsapp-float:hover {
@@ -881,7 +817,7 @@
       font-size: 2rem;
       color: white;
     }
-    @keyframes pulse {
+    @keyframes pulseWa {
       0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
       70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
@@ -944,104 +880,34 @@
       font-size: 0.9rem;
     }
 
-    /* ========== RESPONSIVE ========== */
+    /* Responsive */
     @media (max-width: 968px) {
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: block;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-
-      .section-header h2 {
-        font-size: 2rem;
-      }
-
-      .container {
-        padding: 0 20px;
-      }
-
-      section {
-        padding: 60px 0;
-      }
-
-      .about-stats,
-      .contact-flex {
-        padding: 30px 24px;
-      }
-
-      .cta-section {
-        padding: 50px 24px;
-      }
-
-      .cta-section h2 {
-        font-size: 1.8rem;
-      }
-
-      .service-card h3 {
-        font-size: 1.2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .monogram-container img {
-        height: 38px;
-      }
-
-      .universal-trans {
-        font-size: 1.1rem;
-      }
-
-      .vertical-divider {
-        height: 40px;
-      }
-
-      .scroll-indicator {
-        bottom: 20px;
-      }
-
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-      }
-      .whatsapp-float i {
-        font-size: 1.5rem;
-      }
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .section-header h2 { font-size: 2rem; }
+      .container { padding: 0 20px; }
+      section { padding: 60px 0; }
+      .about-stats, .contact-flex { padding: 30px 24px; }
+      .cta-section { padding: 50px 24px; }
+      .cta-section h2 { font-size: 1.8rem; }
+      .service-card h3 { font-size: 1.2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .monogram-container img { height: 38px; }
+      .universal-trans { font-size: 1.1rem; }
+      .vertical-divider { height: 40px; }
+      .scroll-indicator { bottom: 20px; }
+      .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+      .whatsapp-float i { font-size: 1.5rem; }
     }
 
     @media (max-width: 580px) {
-      .logo-wrapper {
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-
-      .universal-trans {
-        font-size: 0.85rem;
-      }
-
-      .vertical-divider {
-        height: 30px;
-      }
-
-      .monogram-container img {
-        height: 28px;
-      }
+      .logo-wrapper { gap: 8px; flex-wrap: wrap; }
+      .universal-trans { font-size: 0.85rem; }
+      .vertical-divider { height: 30px; }
+      .monogram-container img { height: 28px; }
     }
 
-    /* Mobile Dropdown */
     #mobileDropdown {
       display: none;
       position: fixed;
@@ -1055,7 +921,6 @@
       flex-direction: column;
       gap: 20px;
     }
-
     #mobileDropdown a {
       color: #E8ECEF;
       text-decoration: none;
@@ -1063,11 +928,7 @@
       font-size: 1.1rem;
       transition: var(--transition);
     }
-
-    #mobileDropdown a:hover {
-      color: #00D4FF;
-    }
-
+    #mobileDropdown a:hover { color: #00D4FF; }
     #mobileDropdown .btn-primary {
       text-align: center;
       justify-content: center;
@@ -1138,7 +999,7 @@
     <a href="quote.html" class="btn btn-primary">Get Quote</a>
   </div>
 
-  <!-- Hero Section - Upgraded -->
+  <!-- Hero Section -->
   <section id="home" class="hero">
     <video class="hero-bg-video" autoplay muted loop playsinline>
       <source src="pic/hero-video.mp4" type="video/mp4">
@@ -1153,16 +1014,9 @@
         <a href="contact.html" class="btn-outline btn-large"><i class="fas fa-headset"></i> Free Consultation</a>
       </div>
     </div>
-
-    <!-- Animated Scroll Down Arrow -->
-    <div class="scroll-indicator" id="scrollArrow">
+    <div class="scroll-indicator">
       <a href="#services">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
-        <div class="arrow-down">
-          <i class="fas fa-chevron-down"></i>
-        </div>
+        <i class="fas fa-chevron-down" style="color: var(--electric-blue); font-size: 2rem;"></i>
       </a>
     </div>
   </section>
@@ -1178,7 +1032,7 @@
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
           <h3>📦 Load Booking & Freight Matching</h3>
-          <p>Best paying loads find karke trucks ko assign karna. Smart matching technology se aapko highest paying loads milte hain.</p>
+          <p>Find and assign the best paying loads to your trucks. Smart matching technology delivers the highest paying loads to you.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-headset"></i></div>
@@ -1193,23 +1047,23 @@
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-dollar-sign"></i></div>
           <h3>💰 Rate Negotiation</h3>
-          <p>Brokers se highest possible rate secure karwana. Expert negotiators ensure premium rates for every load.</p>
+          <p>Secure the highest possible rates from brokers. Expert negotiators ensure premium rates for every load.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-route"></i></div>
           <h3>📍 Route Planning & Tracking</h3>
-          <p>Efficient routes plan karna aur live tracking support dena. Real-time GPS tracking and optimal route optimization.</p>
+          <p>Plan efficient routes and provide live tracking support. Real-time GPS tracking and optimal route optimization.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-file-alt"></i></div>
           <h3>📄 Paperwork & Broker Coordination</h3>
-          <p>All documents handle karna aur broker se communication manage karna. Complete back-office support.</p>
+          <p>Handle all documents and manage broker communication. Complete back-office support.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner after Services - NEW -->
+  <!-- CTA Banner after Services -->
   <div class="container">
     <div class="cta-banner">
       <h2>Ready to Increase Your Revenue?</h2>
@@ -1226,22 +1080,10 @@
         <p>Built to drive your profitability and peace of mind</p>
       </div>
       <div class="why-grid">
-        <div class="why-item"><i class="fas fa-clock"></i>
-          <h4>24/7 Dispatch Support</h4>
-          <p>Round-the-clock operational assistance for any timezone.</p>
-        </div>
-        <div class="why-item"><i class="fas fa-dollar-sign"></i>
-          <h4>High Paying Loads</h4>
-          <p>Exclusive contracts with top brokers to maximize margins.</p>
-        </div>
-        <div class="why-item"><i class="fas fa-users"></i>
-          <h4>Experienced Team</h4>
-          <p>8+ years of logistics & carrier management expertise.</p>
-        </div>
-        <div class="why-item"><i class="fas fa-map-marked-alt"></i>
-          <h4>Real-time Tracking</h4>
-          <p>Live visibility and proactive route optimization.</p>
-        </div>
+        <div class="why-item"><i class="fas fa-clock"></i><h4>24/7 Dispatch Support</h4><p>Round-the-clock operational assistance for any timezone.</p></div>
+        <div class="why-item"><i class="fas fa-dollar-sign"></i><h4>High Paying Loads</h4><p>Exclusive contracts with top brokers to maximize margins.</p></div>
+        <div class="why-item"><i class="fas fa-users"></i><h4>Experienced Team</h4><p>8+ years of logistics & carrier management expertise.</p></div>
+        <div class="why-item"><i class="fas fa-map-marked-alt"></i><h4>Real-time Tracking</h4><p>Live visibility and proactive route optimization.</p></div>
       </div>
     </div>
   </section>
@@ -1259,30 +1101,18 @@
           </div>
         </div>
         <div class="stats">
-          <div class="stat-item">
-            <div class="stat-number">12,580+</div>
-            <div>Loads Delivered</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">8+ Years</div>
-            <div>Industry Experience</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">340+</div>
-            <div>Happy Owner Operators</div>
-          </div>
+          <div class="stat-item"><div class="stat-number">12,580+</div><div>Loads Delivered</div></div>
+          <div class="stat-item"><div class="stat-number">8+ Years</div><div>Industry Experience</div></div>
+          <div class="stat-item"><div class="stat-number">340+</div><div>Happy Owner Operators</div></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Cinematic Visual Break -->
-  <div class="visual-break"
-    style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed; padding: 120px 0; text-align: center; background-attachment: fixed; margin: 40px 0; border-top: 1px solid rgba(0,212,255,0.3); border-bottom: 1px solid rgba(0,212,255,0.3);">
+  <div class="visual-break" style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)), url('https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover fixed; padding: 120px 0; text-align: center; background-attachment: fixed; margin: 40px 0; border-top: 1px solid rgba(0,212,255,0.3); border-bottom: 1px solid rgba(0,212,255,0.3);">
     <div class="container">
-      <h2 style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #00D4FF); -webkit-background-clip: text; background-clip: text; color: transparent;">
-        We Don't Chase Loads.<br><span style="color: var(--electric-blue);">We Secure Profits.</span>
-      </h2>
+      <h2 style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #FFFFFF, #00D4FF); -webkit-background-clip: text; background-clip: text; color: transparent;">We Don't Chase Loads.<br><span style="color: var(--electric-blue);">We Secure Profits.</span></h2>
     </div>
   </div>
 
@@ -1294,24 +1124,9 @@
         <p>Real results from the road</p>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>"Best dispatch service I've ever worked with! Revenue increased 35% in 3 months."</p>
-          </div>
-          <div class="client-name">— Michael R., Owner Operator</div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>"They find high-paying loads and handle everything 24/7. Truly professional."</p>
-          </div>
-          <div class="client-name">— Jessica T., Fleet Owner</div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-text"><i class="fas fa-quote-left"></i>
-            <p>"Reliable, transparent, and profit-driven. Best decision I made for my business."</p>
-          </div>
-          <div class="client-name">— Derrick L., Independent Driver</div>
-        </div>
+        <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>"Best dispatch service I've ever worked with! Revenue increased 35% in 3 months."</p></div><div class="client-name">— Michael R., Owner Operator</div></div>
+        <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>"They find high-paying loads and handle everything 24/7. Truly professional."</p></div><div class="client-name">— Jessica T., Fleet Owner</div></div>
+        <div class="testimonial-card"><div class="testimonial-text"><i class="fas fa-quote-left"></i><p>"Reliable, transparent, and profit-driven. Best decision I made for my business."</p></div><div class="client-name">— Derrick L., Independent Driver</div></div>
       </div>
     </div>
   </section>
@@ -1324,7 +1139,7 @@
     </div>
   </div>
 
-  <!-- Contact Section with Map -->
+  <!-- Contact Section -->
   <section id="contact">
     <div class="container">
       <div class="contact-flex">
@@ -1343,15 +1158,15 @@
           <h4>Quick Contact</h4>
           <div class="quick-contact">
             <a href="tel:+15876994068"><i class="fas fa-phone-alt"></i> +1 (587) 699-4068</a>
-            <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat (Click to Message)</a>
+            <a href="https://wa.me/15876994068" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
             <a href="mailto:rafaysmith.utl@gmail.com"><i class="fas fa-envelope"></i> rafaysmith.utl@gmail.com</a>
-            <a href="https://maps.google.com/?q=2200+Logistics+Way+Dallas+TX" target="_blank">
-              <i class="fas fa-map-marker-alt"></i> 2200 Logistics Way, Suite 400, Dallas, TX
+            <a href="https://maps.google.com/?q=2200+Logistics+Dr,+Dallas,+TX+75241" target="_blank">
+              <i class="fas fa-map-marker-alt"></i> 2200 Logistics Dr, Dallas, TX 75241
             </a>
           </div>
           <hr style="margin: 20px 0; border-color: #222;">
           <div class="embedded-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214586.63451248736!2d-96.9216614423828!3d32.82058655032314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b459c6d%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.567489249964!2d-96.75489888482457!3d32.62873248101051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e960014cb6391%3A0xf7d284781eec3a0a!2s2200%20Logistics%20Dr%2C%20Dallas%2C%20TX%2075241!5e1!3m2!1sen!2sus!4v1745866674672!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
           </div>
           <hr style="margin: 20px 0; border-color: #222;">
           <div class="quick-contact">
@@ -1403,7 +1218,7 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Floating Button - NEW -->
+  <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/15876994068" target="_blank" class="whatsapp-float">
     <i class="fab fa-whatsapp"></i>
   </a>
@@ -1427,27 +1242,16 @@
       else navbar.classList.remove('scrolled');
     });
 
-    // ========== CLICK-BASED DROPDOWN ==========
+    // Dropdown toggle
     const dropBtn = document.getElementById('dropBtn');
     const dropdown = document.getElementById('servicesDropdown');
-
     if (dropBtn && dropdown) {
       dropBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         dropdown.classList.toggle('show');
       });
-
       document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove('show');
-        }
-      });
-
-      const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-      dropdownLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          dropdown.classList.remove('show');
-        });
+        if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
       });
     }
 
@@ -1472,7 +1276,7 @@
       }
     });
 
-    // Smooth scroll for internal anchor links only (for scroll arrow)
+    // Scroll arrow
     const scrollArrow = document.querySelector('.scroll-indicator a');
     if (scrollArrow) {
       scrollArrow.addEventListener('click', function (e) {
@@ -1487,7 +1291,7 @@
       });
     }
 
-    // Form submission feedback
+    // Form submission
     const form = document.getElementById('leadForm');
     const feedback = document.getElementById('formFeedback');
     if (form) {
