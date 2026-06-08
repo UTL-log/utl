@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universal Trans Logistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Universal Trans Logistics | Get a Quote</title>
   <link rel="icon" type="image/png" href="pic/logoog2.png">
   <style>
-    /* ========== NAVBAR & FOOTER CSS - HOME PAGE JESA ========== */
+    /* ========== GLOBAL RESET & VARIABLES ========== */
     * {
       margin: 0;
       padding: 0;
@@ -26,6 +26,49 @@
       font-family: 'Poppins', 'Segoe UI', sans-serif;
       background: var(--pure-black);
       color: var(--metallic-silver);
+      overflow-x: hidden;
+    }
+
+    /* ========== LOADING ANIMATION ========== */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader-truck {
+      font-size: 4.5rem;
+      color: var(--electric-blue);
+      animation: truckDrive 1.2s infinite alternate ease-in-out;
+      filter: drop-shadow(0 0 12px var(--electric-blue));
+    }
+    @keyframes truckDrive {
+      0% { transform: translateX(-30px); opacity: 0.6; }
+      100% { transform: translateX(30px); opacity: 1; }
+    }
+    .loader-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulseGlow 1.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; text-shadow: 0 0 8px var(--electric-blue);}
     }
 
     /* ========== NAVBAR ========== */
@@ -153,6 +196,7 @@
       border-radius: 16px;
       border: 1px solid rgba(0, 212, 255, 0.3);
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
     .dropdown-content a {
       color: var(--metallic-silver);
@@ -190,6 +234,10 @@
       transform: translateY(-2px);
       box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
     }
+    .btn-large {
+      padding: 14px 42px;
+      font-size: 1.1rem;
+    }
     .mobile-menu {
       display: none;
       font-size: 28px;
@@ -197,33 +245,223 @@
       cursor: pointer;
     }
 
-    /* Page Content Styling */
-    .page-content {
-      min-height: 60vh;
-      padding: 120px 0 60px;
+    /* ========== QUOTE PAGE STYLES ========== */
+    .quote-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, #0A1F44, #000000);
+      overflow: hidden;
     }
-    .page-content h1 {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #E8ECEF, #00D4FF);
+    .quote-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+      animation: rotateBg 25s linear infinite;
+    }
+    @keyframes rotateBg {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .quote-hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      z-index: 2;
+      position: relative;
+      animation: fadeInUp 1s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .quote-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, var(--electric-blue));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       margin-bottom: 20px;
     }
-    .page-content p {
+    .quote-hero p {
       color: #B0B4B8;
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
-      line-height: 1.8;
+      font-size: 1.2rem;
+      line-height: 1.6;
     }
+
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
-    /* ========== FOOTER (HOME PAGE JESA) ========== */
+    /* Quote Form Section */
+    .quote-section {
+      padding: 80px 0;
+    }
+    .quote-card {
+      background: rgba(13, 13, 13, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      padding: 50px 60px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      transition: var(--transition);
+    }
+    .quote-card:hover {
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--electric-blue);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 28px;
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00D4FF, #0099FF);
+      border: none;
+      width: 100%;
+      padding: 14px;
+      font-weight: bold;
+      color: #000;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+    .form-feedback {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    /* Why Choose Us Section */
+    .why-quote {
+      background: linear-gradient(135deg, #0A0A0A, #050510);
+      border-radius: 60px;
+      padding: 60px 48px;
+      text-align: center;
+      margin: 40px 0;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+    .why-quote h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+    .why-quote p {
+      color: #B0B4B8;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .feature-item {
+      text-align: center;
+    }
+    .feature-item i {
+      font-size: 2rem;
+      color: var(--electric-blue);
+      margin-bottom: 10px;
+    }
+    .feature-item span {
+      font-size: 0.9rem;
+      color: var(--metallic-silver);
+    }
+
+    @media (max-width: 968px) {
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+      .container { padding: 0 20px; }
+      .quote-hero h1 { font-size: 2.5rem; }
+      .quote-card { padding: 30px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .monogram-container img { height: 38px; }
+      .universal-trans { font-size: 1.1rem; }
+      .vertical-divider { height: 40px; }
+      .why-quote { padding: 40px 24px; }
+      .why-quote h2 { font-size: 1.8rem; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .logo-wrapper { gap: 8px; flex-wrap: wrap; }
+      .universal-trans { font-size: 0.85rem; }
+      .vertical-divider { height: 30px; }
+      .monogram-container img { height: 28px; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    #mobileDropdown {
+      display: none;
+      position: fixed;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      background: #000000;
+      z-index: 999;
+      border-bottom: 1px solid #00D4FF;
+      padding: 20px;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #mobileDropdown a {
+      color: #E8ECEF;
+      text-decoration: none;
+      font-family: Poppins;
+      font-size: 1.1rem;
+    }
+    #mobileDropdown a:hover { color: #00D4FF; }
+    #mobileDropdown .btn-primary {
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Footer */
     footer {
       background: #050505;
       padding: 60px 0 30px;
@@ -246,15 +484,22 @@
       gap: 60px;
       flex-wrap: wrap;
     }
+    .footer-links h4 {
+      color: var(--electric-blue);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
     .footer-links a {
       display: block;
       color: var(--metallic-silver);
       text-decoration: none;
       margin-bottom: 12px;
       transition: var(--transition);
+      font-size: 0.9rem;
     }
     .footer-links a:hover {
       color: var(--electric-blue);
+      transform: translateX(5px);
     }
     .social-icons a {
       color: var(--metallic-silver);
@@ -264,6 +509,7 @@
     }
     .social-icons a:hover {
       color: var(--electric-blue);
+      transform: translateY(-3px);
     }
     .copyright {
       text-align: center;
@@ -272,71 +518,23 @@
       color: #666;
       font-size: 0.9rem;
     }
-
-    /* Responsive */
-    @media (max-width: 968px) {
-      .nav-links {
-        display: none;
-      }
-      .mobile-menu {
-        display: block;
-      }
-      .container {
-        padding: 0 20px;
-      }
-      .universal-trans {
-        font-size: 1.1rem;
-      }
-      .monogram-container img {
-        height: 38px;
-      }
-      .vertical-divider {
-        height: 40px;
-      }
-      .page-content h1 {
-        font-size: 2rem;
-      }
-    }
-
-    #mobileDropdown {
-      display: none;
-      position: fixed;
-      top: 75px;
-      left: 0;
-      width: 100%;
-      background: #000000;
-      z-index: 999;
-      border-bottom: 1px solid #00D4FF;
-      padding: 20px;
-      flex-direction: column;
-      gap: 20px;
-    }
-    #mobileDropdown a {
-      color: #E8ECEF;
-      text-decoration: none;
-      font-family: Poppins;
-      font-size: 1.1rem;
-    }
-    #mobileDropdown a:hover {
-      color: #00D4FF;
-    }
-    #mobileDropdown .btn-primary {
-      text-align: center;
-      width: 100%;
-    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<!-- ========== NAVBAR (HOME PAGE JESA) ========== -->
+<!-- Loading Animation -->
+<div class="loader-wrapper" id="loaderWrapper">
+  <div class="loader-truck"><i class="fas fa-truck-moving"></i></div>
+  <div class="loader-text">UNIVERSAL TRANS LOGISTICS</div>
+</div>
+
+<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <div class="logo-wrapper">
-      <div class="monogram-container">
-        <img src="pic/logoog2.png" alt="UTL Logo">
-      </div>
+      <div class="monogram-container"><img src="pic/logoog2.png" alt="UTL Logo"></div>
       <div class="vertical-divider"></div>
       <div class="brand-text-side">
         <div class="universal-trans">UNIVERSAL TRANS</div>
@@ -379,15 +577,106 @@
   <a href="quote.html" class="btn btn-primary">Get Quote</a>
 </div>
 
-<!-- ========== PAGE CONTENT (YAHAN AAP APNA CONTENT DALENGE) ========== -->
-<div class="page-content">
+<!-- Quote Hero Section -->
+<section class="quote-hero">
+  <div class="quote-hero-content">
+    <h1>Get a Free Quote</h1>
+    <p>Tell us about your trucking needs and our dispatch team will get back to you within 24 hours with the best rates.</p>
+  </div>
+</section>
+
+<!-- Quote Form Section -->
+<section class="quote-section">
   <div class="container">
-    <h1>Page Title</h1>
-    <p>Yahan aap apna content daal sakte hain. Ye sirf placeholder hai. Aapko jo bhi add karna hai yahan add karein.</p>
+    <div class="quote-card">
+      <form id="quoteForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" required id="fullName" placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" required id="emailAddr" placeholder="Enter your email address">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" required id="phoneNum" placeholder="Enter your phone number">
+          </div>
+          <div class="form-group">
+            <label>Company Name (Optional)</label>
+            <input type="text" id="companyName" placeholder="Enter your company name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of Trucks</label>
+            <select id="truckCount">
+              <option value="1-2">1-2 Trucks</option>
+              <option value="3-5">3-5 Trucks</option>
+              <option value="6-10">6-10 Trucks</option>
+              <option value="10+">10+ Trucks</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Truck Type</label>
+            <select id="truckType">
+              <option value="Dry Van">Dry Van</option>
+              <option value="Reefer">Reefer</option>
+              <option value="Flatbed">Flatbed</option>
+              <option value="Step Deck">Step Deck</option>
+              <option value="Power Only">Power Only</option>
+              <option value="Hotshot">Hotshot</option>
+              <option value="Box Truck">Box Truck</option>
+              <option value="Sprinter/Cargo Van">Sprinter/Cargo Van</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Service</label>
+            <select id="serviceType">
+              <option value="Full Dispatch">Full Dispatch Service</option>
+              <option value="Load Booking Only">Load Booking Only</option>
+              <option value="Rate Negotiation Only">Rate Negotiation Only</option>
+              <option value="Full Fleet Management">Full Fleet Management</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Lanes (Optional)</label>
+            <input type="text" id="preferredLanes" placeholder="e.g., Dallas to Chicago, I-95 corridor">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Additional Information / Special Requirements</label>
+          <textarea rows="4" id="specialReq" placeholder="Tell us about your equipment, authority status, or any specific needs..."></textarea>
+        </div>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Submit Quote Request</button>
+        <p class="form-feedback" id="quoteFeedback"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<div class="container">
+  <div class="why-quote">
+    <h2>Why Choose Universal Trans Logistics?</h2>
+    <p>We provide the best dispatch services with transparent pricing and dedicated support</p>
+    <div class="features-grid">
+      <div class="feature-item"><i class="fas fa-dollar-sign"></i><span>Highest Paying Loads</span></div>
+      <div class="feature-item"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
+      <div class="feature-item"><i class="fas fa-chart-line"></i><span>Rate Negotiation</span></div>
+      <div class="feature-item"><i class="fas fa-clock"></i><span>Fast Payment</span></div>
+      <div class="feature-item"><i class="fas fa-ban"></i><span>No Forced Dispatch</span></div>
+      <div class="feature-item"><i class="fas fa-user-check"></i><span>Dedicated Dispatcher</span></div>
+    </div>
   </div>
 </div>
 
-<!-- ========== FOOTER (HOME PAGE JESA) ========== -->
+<!-- Footer -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -397,19 +686,21 @@
       </div>
       <div class="footer-links">
         <div>
-          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Quick Links</h4>
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="why-us.html">Why Us</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+          <h4>Quick Links</h4>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="services.html"><i class="fas fa-truck"></i> Services</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          <a href="why-us.html"><i class="fas fa-star"></i> Why Us</a>
+          <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+          <a href="quote.html"><i class="fas fa-file-invoice"></i> Get Quote</a>
         </div>
         <div>
-          <h4 style="color: var(--electric-blue); margin-bottom: 15px;">Services</h4>
-          <a href="services.html">Load Booking</a>
-          <a href="services.html">Rate Negotiation</a>
-          <a href="services.html">Route Planning</a>
-          <a href="services.html">Broker Coordination</a>
+          <h4>Services</h4>
+          <a href="services.html"><i class="fas fa-calendar-check"></i> Load Booking</a>
+          <a href="services.html"><i class="fas fa-dollar-sign"></i> Rate Negotiation</a>
+          <a href="services.html"><i class="fas fa-route"></i> Route Planning</a>
+          <a href="services.html"><i class="fas fa-file-alt"></i> Broker Coordination</a>
+          <a href="services.html"><i class="fas fa-headset"></i> 24/7 Support</a>
         </div>
       </div>
       <div>
@@ -429,6 +720,17 @@
 </footer>
 
 <script>
+  // Loader hide
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loaderWrapper');
+    if (loader) {
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 1000);
+    }
+  });
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -453,8 +755,37 @@
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileDropdown = document.getElementById('mobileDropdown');
   if (mobileBtn && mobileDropdown) {
-    mobileBtn.addEventListener('click', () => {
+    mobileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileDropdown.style.display = mobileDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+    mobileDropdown.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDropdown.style.display = 'none';
+      });
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 968 && mobileDropdown) {
+      mobileDropdown.style.display = 'none';
+    }
+  });
+
+  // Form submission
+  const form = document.getElementById('quoteForm');
+  const feedback = document.getElementById('quoteFeedback');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value;
+      if (name.trim()) {
+        feedback.innerHTML = '<span style="color: #00D4FF;">✅ Thank you! Our dispatch team will contact you within 24 hours with the best rates.</span>';
+        form.reset();
+        setTimeout(() => feedback.innerHTML = '', 5000);
+      } else {
+        feedback.innerHTML = '<span style="color: #FF6B00;">Please fill all required fields.</span>';
+      }
     });
   }
 </script>
